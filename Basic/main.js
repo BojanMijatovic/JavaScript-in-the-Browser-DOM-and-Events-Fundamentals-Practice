@@ -21,10 +21,25 @@ btn.addEventListener('click', function(e) {
 })
 
 
-for (let i = 0; i < newArr.length; i++) {
-    const newP = document.createElement('p');
-    newP.textContent = newArr[i];
-    newP.style.backgroundColor = 'green';
-    newP.style.color = 'white';
-    document.body.append(newP);
+// for (let i = 0; i < newArr.length; i++) {
+//     const newP = document.createElement('p');
+//     newP.textContent = newArr[i];
+//     newP.style.backgroundColor = 'green';
+//     newP.style.color = 'white';
+//     document.body.append(newP);
+// }
+
+
+const numbers = document.querySelectorAll('li');
+
+for (let i = 0; i < numbers.length; i++) {
+    numbers[i].style.color = 'teal';
 }
+
+
+const btnChangeText = document.querySelector('#change-text');
+
+
+btnChangeText.addEventListener('click', function(e) {
+    document.querySelector('p').textContent = 'Here is new Text'
+})
