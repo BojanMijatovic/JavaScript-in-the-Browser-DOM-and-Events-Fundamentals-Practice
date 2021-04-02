@@ -1,6 +1,5 @@
 'use strict';
 
-
 const arr = [1, 3, 4, 5, 6, 7];
 const newArr = [];
 
@@ -22,15 +21,6 @@ btn.addEventListener('click', function(e) {
         document.body.style.backgroundColor = 'white'
     }
 })
-
-
-// for (let i = 0; i < newArr.length; i++) {
-//     const newP = document.createElement('p');
-//     newP.textContent = newArr[i];
-//     newP.style.backgroundColor = 'green';
-//     newP.style.color = 'white';
-//     document.body.append(newP);
-// }
 
 
 const numbers = document.querySelectorAll('li');
@@ -55,7 +45,3 @@ pickNumberBtn.addEventListener('click', function(e) {
     newArr.push(addNumber)
     console.log(newArr);
 })
-
-
-
-console.log('test');
