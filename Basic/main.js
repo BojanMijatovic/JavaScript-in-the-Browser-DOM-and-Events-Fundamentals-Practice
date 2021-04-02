@@ -55,3 +55,7 @@ pickNumberBtn.addEventListener('click', function(e) {
     newArr.push(addNumber)
     console.log(newArr);
 })
+
+
+
+console.log('test');
