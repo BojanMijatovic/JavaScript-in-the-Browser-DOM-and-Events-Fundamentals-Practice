@@ -10,4 +10,5 @@ btnCalc.addEventListener('click', function() {
     } else {
         document.body.style.backgroundColor = 'teal';
     }
+
 })
