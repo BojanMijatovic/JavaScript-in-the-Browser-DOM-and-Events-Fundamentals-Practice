@@ -5,17 +5,27 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <script src="main.js" defer></script>
     <title>Modal window</title>
 </head>
 
 <body>
-    <button class="modal">modal 1</button>
-    <button class="modal">modal 2</button>
-    <button class="modal">modal 3</button>
-    <p class="text">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero unde excepturi facere optio quisquam dignissimos?
-    </p>
+    <button class="show-modal-btn">modal 1</button>
+    <button class="show-modal-btn">modal 2</button>
+    <button class="show-modal-btn">modal 3</button>
+    <div class="modal hidden">
+        <p class="text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero unde excepturi facere optio quisquam dignissimos?
+            <button class="close-modal">x</button>
+        </p>
+    </div>
+    <div class="container">
+        <div class="text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit cumque consequuntur veritatis soluta voluptas fuga dolore est, dolorum quos eligendi vel non excepturi provident fugit ut deserunt, velit minus facilis nostrum. Non, ipsum?
+        </div>
+        <button class="close">x</button>
+    </div>
 </body>
 
 </html>
