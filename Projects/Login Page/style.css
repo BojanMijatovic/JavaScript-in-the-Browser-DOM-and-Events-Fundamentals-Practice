@@ -11,3 +11,11 @@ body {
     overflow: hidden;
     margin: 0;
 }
+
+input {
+    margin: 10px;
+}
+
+.hidden {
+    display: none;
+}

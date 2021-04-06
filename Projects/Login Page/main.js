@@ -3,3 +3,20 @@ Most web pages on the internet require a user to login to their account via a lo
 
 Similarly, alert the user if the input is correct. Either redirect the user to another web page or provide a message indicating that login was successful.
 */
+
+const userName = document.getElementById('user-name').value;
+const password = document.getElementById('password');
+const submitBtn = document.querySelector('.btn');
+const showAlert = document.querySelector('.show-alert');
+
+
+submitBtn.addEventListener('click', function() {
+    if (userName === '' || password === '') {
+        showAlert.classList.toggle('hidden');
+    } else if (userName.length < 4 || password.value < 3) {
+        alert(`Need stronger password`);
+    } else {
+        alert(`Welcome ${userName}`)
+    }
+
+})
