@@ -1,4 +1,5 @@
 'use strict';
+//  --------- Example
 //  global scope
 const firstName = 'Alex';
 let lastName = 'Smith';
@@ -87,3 +88,26 @@ function changeName() {
 }
 
 console.log(changeName());
+
+
+//  ----------
+
+const newName = 'Ivan';
+
+function first() {
+    const a = 'Hey'
+    return second();
+
+    function second() {
+        const b = `how`;
+        return third();
+
+        function third() {
+            const c = ' are you?'
+            return `${a} ${newName} ${b} ${c}`;
+        }
+
+    }
+}
+
+console.log(first());
