@@ -53,15 +53,37 @@ function addNums() {
     let a = num1;
     a = num2;
 
+    //  block scope
+    if (!false) {
+        return more();
+    }
+
     //  function scope
     function more() {
         return num1 + num2 + a;
     }
 
-    if (!false) {
-        return more();
-    }
-
 }
 
 console.log(addNums());
+
+
+//  ----------
+
+function changeName() {
+    let name = 'Alex';
+    let lastName = 'Freddy';
+
+    function addYears() {
+        const year = 33;
+        const bio = `${name} ${lastName} have ${year}`
+        return bio;
+    }
+
+    name = 'Tomas';
+    lastName = lastName + ` junior`;
+
+    return addYears();
+}
+
+console.log(changeName());
