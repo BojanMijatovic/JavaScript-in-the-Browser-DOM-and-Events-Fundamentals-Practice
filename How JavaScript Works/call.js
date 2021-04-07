@@ -91,7 +91,6 @@ console.log(changeName());
 
 
 //  ----------
-
 const newName = 'Ivan';
 
 function first() {
@@ -111,3 +110,29 @@ function first() {
 }
 
 console.log(first());
+
+
+// ------------
+//  block scope
+if (!false) {
+
+    // function scope
+    console.log(add());
+
+    function add() {
+        return 2 + 2;
+    }
+
+    const num = add() + 20;
+    let a = num;
+    a = 100;
+
+    if (true) {
+        function addMore() {
+            const b = a;
+            return b + 30;
+        }
+        console.log(addMore());
+    }
+
+}
