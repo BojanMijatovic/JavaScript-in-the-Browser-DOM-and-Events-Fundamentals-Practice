@@ -15,7 +15,7 @@ const newStart = function() {
 newStart();
 
 //  work in strict mode and point on WINDOW object
-//    arrow functions don`t have own THIS KEYWORD
+//    arrow functions don`t have own THIS KEYWORD they use lexical scope or parent scope its same 
 const arr = () => console.log(this);
 arr();
 
@@ -41,3 +41,31 @@ btn.addEventListener('click', function() {
 btn.addEventListener('click', () => {
     console.log(this);
 })
+
+
+
+const men = {
+    //  parent scope
+    name: 'Alex',
+    here: () => {
+        console.log(this);
+    },
+    //  object inside object
+    job: {
+        look: () => {
+            console.log(this);
+        }
+    },
+    regular: function() {
+        console.log(this);
+    }
+}
+
+// point to window obj
+men.job.look();
+
+//  also point to window obj
+men.here();
+
+//  point on obj who is calling
+men.regular();
