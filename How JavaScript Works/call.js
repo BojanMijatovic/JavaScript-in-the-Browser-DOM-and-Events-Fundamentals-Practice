@@ -52,22 +52,55 @@ function show() {
 
 //  SCOPE CHAIN VS CALL STACK
 
-const a = 'John';
+// const a = 'John';
+// first();
+
+// function first() {
+
+//     const b = 'Hello';
+//     second();
+
+//     function second() {
+//         const c = 'Hi';
+//         third();
+//     }
+
+// }
+
+// function third() {
+//     const d = 'Hey';
+//     console.log(d + c + b + a);
+// }
+
+//  Practice scope
+
+function calcAge(birthYear) {
+    const age = 2021 - birthYear;
+
+    function printAge() {
+        const output = `You are born ${birthYear} now you have ${age}`
+        console.log(output);
+    }
+    printAge();
+    return age;
+}
+const firstName = 'Alex';
+console.log(calcAge(1987));
+
+// g
+let a = "hello";
+// g
 first();
 
-function first() {
 
-    const b = 'Hello';
+// local 
+function first() {
+    let b = "hi !";
     second();
 
+    // local
     function second() {
-        const c = 'Hi';
-        third();
+        let c = "hey !";
+        console.log(a + b + c);
     }
-
-}
-
-function third() {
-    const d = 'Hey';
-    console.log(d + c + b + a);
 }
