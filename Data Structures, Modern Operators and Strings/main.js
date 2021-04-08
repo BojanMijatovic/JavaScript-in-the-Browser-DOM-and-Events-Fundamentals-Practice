@@ -2,7 +2,7 @@
 
 // Data Structures, Modern Operators and Strings
 
-// Destructuring Arrays
+//      Destructuring Arrays
 const facebookPages = [{
     title: "1. FC Pauli",
     fans: 2011,
@@ -36,10 +36,21 @@ const facebookPages = [{
     ],
 }, ];
 
-// example destructing arr
+// example  
 const [page] = facebookPages;
 const [firstPost, secondPost] = page.posts;
-console.log(firstPost, secondPost);
+console.log(page);
+
+//  destructing Objects
+const { title, fans } = page;
+// console.log(title, fans);
+// console.log(`We have ${fans} fans on page`);
+
+//  pull comments from second Post
+const [firstComment, secondComment, thirdComment] = secondPost.comments
+    // console.log(firstComment.text);
+    // console.log(secondComment.text);
+    // console.log(thirdComment.text);
 
 
 
@@ -50,3 +61,43 @@ const restaurant = {
     startMenu: ['Garlic bread', 'Tomato', 'Salad'],
     mainMenu: ['Pizza', 'Breakfast', 'Risotto', 'Pasta']
 }
+
+//  take all items from array
+const [first, second, third] = restaurant.startMenu;
+
+const arr = [1, 2, 3];
+
+let [a, b, c] = arr;
+//  now here we change positions on first and second
+[b, a] = [a, b];
+
+//  pull from nested arr 
+const nestedArr = [2, 3, 4, [1, 5]];
+
+const [two, , , newArr] = nestedArr;
+// console.log(two, newArr);
+const [num1, num2] = newArr;
+// console.log(num1, num2);
+
+//  destructing  nested arr in one line
+const [one, , , [e, d]] = nestedArr;
+console.log(one, e, d);
+
+
+//      Destructuring Objects
+
+//  example
+const person = {
+    name: 'Alex',
+    age: 34,
+    job: 'junior'
+}
+
+const { name, age, job } = person;
+
+//  with another name 
+const { name: personName } = person;
+// console.log(personName);
+
+//  add default values
+const { firstName = 'firstName' } = person;
