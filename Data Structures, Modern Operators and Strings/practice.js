@@ -36,7 +36,7 @@ const facebookPages = [{
     ],
 }, ];
 
-//   arrays and objects examples
+//    destructing  arrays and objects examples
 const [{ posts }] = facebookPages;
 console.log(posts);
 const [{ likes }, { likes: secondLikes }] = posts;
@@ -49,10 +49,39 @@ const sumLikes = function(a, b) {
 // console.log(sumLikes(likes, secondLikes));
 
 const message = 'Welcome';
-const [fL, secondL, ...messageNew] = message;
-// console.log(fL, ...messageNew);
+const [firstLetter, secondLetter, ...messageNew] = message;
+
 
 const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
-const [a, b, c, ...restArr] = arr;
+const [, , , a, b, c, ...restArr] = arr;
 console.log(a, b, c);
+
+//  use rest operator on function
+const sumAll = function(...arg) {
+    let total = 0;
+    for (let i = 0; i < arg.length; i++) {
+        total += arg[i];
+    }
+    return console.log(total);
+}
+
+// sumAll(2, 4)
+// sumAll(2, 4, 5, 6)
+// sumAll(2, 4, 5, 6, 9)
+
+// Spread on arr example
+const newArr = [...arr, 10, 11, 12];
+console.log(newArr);
+
+const person = {
+    name: 'Alex',
+    lastName: 'Smith',
+    hobby: []
+}
+
+const { hobby } = person;
+hobby.push('learn js', 'work');
+console.log(person);
+
+const [js, ...rest] = person.hobby;
+console.log(js, ...rest);
