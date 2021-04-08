@@ -35,3 +35,64 @@ const add = (a, b) => {
 
 
 //      Primitives vs. Objects
+//  Primitives : string, boolean , number , undefined  , bigint, symbol and null
+
+let age = 30;
+let oldAge = age;
+age = 31;
+
+const me = {
+    name: 'Ted'
+}
+
+
+const he = me;
+he.age = 44;
+
+console.log(he === me);
+console.log(me);
+
+
+let job = 'developer'; // address  in call stack example 01
+let newJob = job; // address in call stack 01 too
+newJob = 'senior'; // address in call stack 02
+
+// console.log(newJob);
+// console.log(job);
+
+// let a = 4;
+// let b = a + a;
+// a = 10;
+// b = 100;
+
+// console.log(a, b);
+
+// console.log({} === {}); // false
+
+const o = {};
+
+const secondO = o;
+// console.log(secondO === o); // true
+
+const nO = {};
+// console.log(o === nO); // false
+
+
+const a = {
+    num1: 1,
+    num2: 2
+}
+
+const b = {
+    num1: a.num1,
+    num2: a.num2
+}
+
+console.log(a);
+console.log(b);
+console.log(a === b);
+
+b.test = true;
+
+console.log(a);
+console.log(b);
