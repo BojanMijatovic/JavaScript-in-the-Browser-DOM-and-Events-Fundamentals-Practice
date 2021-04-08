@@ -45,12 +45,6 @@ const [{ fans }] = facebookPages;
 // 2. Get the aggregation of post likes per page
 // 3. Get the number of post comments per page
 
-// 1 
-
-
-
-
-
 
 
 
@@ -74,6 +68,16 @@ const restaurant = {
     startMenu: ['Garlic bread', 'Tomato', 'Salad'],
     mainMenu: ['Pizza', 'Breakfast', 'Risotto', 'Pasta']
 }
+
+//  SPREAD OPERATOR
+// console.log(restaurant);
+const menu = [...restaurant.startMenu, ...restaurant.mainMenu];
+
+// REST OPERATOR
+const [, tomato, , pizza, ...restMenu] = menu;
+// console.log(tomato, pizza);
+// console.log(restMenu);
+// console.log(menu);
 
 //  take all items from array
 const [first, second, third] = restaurant.startMenu;
@@ -171,18 +175,60 @@ const obj = {
     newNums: [5, 6, 7, 8]
 }
 
-const { newNums, b, a } = obj;
+// const { newNums, b, a } = obj;
 
 //  this function use destructing obj
-const sumNum = (a, b) => a + b;
+// const sumNum = (a, b) => a + b;
 // console.log(sumNum(b, a));
 
 
 //      The Spread Operator
 
 // example
-const arr = [1, 2, 3];
-const lastArr = [100, 101];
+// const arr = [1, 2, 3];
+// const lastArr = [100, 101];
 
 //  this is complete new ARR
-const newArr = [...arr, 4, 5, 6, 7, ...lastArr];
+// const newArr = [...arr, 4, 5, 6, 7, ...lastArr];
+
+const fullName = 'STRING';
+//  work on all iterables!!
+const destructingName = [...fullName];
+// console.log(destructingName);
+
+// create  copy of person OBJECT
+const newPerson = {...person, exArmy: true };
+// console.log(newPerson);
+// console.log(person);
+
+
+//      Rest Pattern and Parameters
+
+const arr = [1, 2, 3, 4, 5, 6, 7];
+const [a, b, c, ...oldArr] = arr;
+
+// console.log(a, b, c);
+// console.log(arr);
+
+// example on objects
+
+const { framework } = junior.nextToLearn;
+// console.log(framework);
+
+const { name: n, age: ages, ...otherInfo } = person;
+// console.log(otherInfo);
+
+
+//  function with spread operator 
+const add = function(...numbers) {
+    let total = 0;
+    for (let i = 0; i < numbers.length; i++) {
+        total += numbers[i]
+    }
+    return total;
+}
+
+
+console.log(add(2, 3));
+
+console.log(add(2, 3, 4, 6));
