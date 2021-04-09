@@ -60,10 +60,6 @@ console.log(a, b, c);
 const spreadArr = ['spread arr', 'new arr', ...arr];
 console.log(spreadArr);
 
-
-
-
-
 //  use rest operator on function
 const sumAll = function(...arg) {
     let total = 0;
@@ -92,8 +88,6 @@ const person = {
 }
 
 const newPerson = { nameF: 'Ted', ...person };
-
-
 console.log(newPerson);
 
 

@@ -103,3 +103,14 @@ console.log(players1Final);
 'team1', 'draw' and 'team2') */
 const { team1, x: draw, team2 } = game.odds;
 console.log(team1, draw, team2);
+
+let goal = 1;
+for (const goals of game.scored) {
+    console.log(`${goal++} Goal scored ${goals}`);
+}
+
+const totalKeys = Object.keys(game.odds);
+
+
+const total = team1 + team2 + draw;
+console.log(total / totalKeys.length);
