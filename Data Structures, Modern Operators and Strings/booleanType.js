@@ -13,7 +13,7 @@ const newNum = num || 44;
 //  here back last value
 console.log(null || undefined);
 
-//  here back first true value
+//  here back first true value EMPTY OBJECT
 console.log(null || '' || undefined || {} || 'alex');
 
 
