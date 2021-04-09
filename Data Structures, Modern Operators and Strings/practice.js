@@ -56,6 +56,14 @@ const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const [, , , a, b, c, ...restArr] = arr;
 console.log(a, b, c);
 
+//  spread arr 
+const spreadArr = ['spread arr', 'new arr', ...arr];
+console.log(spreadArr);
+
+
+
+
+
 //  use rest operator on function
 const sumAll = function(...arg) {
     let total = 0;
@@ -73,11 +81,22 @@ const sumAll = function(...arg) {
 const newArr = [...arr, 10, 11, 12];
 console.log(newArr);
 
+//  rest operator
+const [q, r, ...newArrR] = newArr;
+console.log(...newArrR);
+
 const person = {
     name: 'Alex',
     lastName: 'Smith',
     hobby: []
 }
+
+const newPerson = { nameF: 'Ted', ...person };
+
+
+console.log(newPerson);
+
+
 
 const { hobby } = person;
 hobby.push('learn js', 'work');
