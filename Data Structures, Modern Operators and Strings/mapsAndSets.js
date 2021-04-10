@@ -81,13 +81,7 @@ for (const [key, value] of questions) {
 
 
 
-// 3. Compute and log the following string to the console: "An event happened, on
-// average, every 9 minutes" (keep in mind that a game has 90 minutes)
-// 4. Loop over 'gameEvents' and log each element to the console, marking
-// whether it's in the first half or second half (after 45 min) of the game, like this:
-// [FIRST HALF]17:
-// ⚽
-// GOAL
+
 
 
 const gameEvents = new Map([
@@ -111,20 +105,37 @@ const events = new Set(gameEvents);
 // 2. After the game has finished, is was found that the yellow card from minute 64
 // was unfair.So remove this event from the game events log.
 const eventsMap = new Map(events);
-console.log(eventsMap);
 
-for (const [key, value] of eventsMap) {
+for (const [key] of eventsMap) {
     if (key === 64) {
         eventsMap.delete(64);
     }
 }
+
 console.log(eventsMap);
+
 
 // 3. Compute and log the following string to the console: "An event happened, on
 // average, every 9 minutes" (keep in mind that a game has 90 minutes)
-const average = function(...time) {
-    let total = 0;
-    for (let i = 0; i < time.length, i++;) {
-        total += i;
+const average = function() {
+    const totalEvent = eventsMap.size;
+    const averageTime = Number(totalEvent / 90 * 100);
+    return console.log(`An event happened, on average, every ${averageTime.toFixed(2)} minutes`);
+}
+
+average();
+
+
+// 4. Loop over 'gameEvents' and log each element to the console, marking
+// whether it's in the first half or second half (after 45 min) of the game, like this:
+// [FIRST HALF]17:
+// ⚽
+// GOAL
+
+for (const [key, value] of eventsMap) {
+    if (key > 0 && key < 46) {
+        console.log(`First half ${key} : ${value}`);
+    } else {
+        console.log(`Second half ${key}: ${value}`);
     }
 }
