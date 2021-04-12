@@ -223,7 +223,38 @@ const carRegistration = function(symbol) {
     return console.log(plate);
 }
 
-carRegistration('eS');
-carRegistration('aa');
-carRegistration('da');
-carRegistration('tr');
+// carRegistration('eS');
+// carRegistration('aa');
+// carRegistration('da');
+// carRegistration('tr');
+
+
+const str = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia illum autem excepturi esse enim. Totam dicta ratione cupiditate dolorem!';
+
+const workOnStr = function(str) {
+    const newStr = str.trim().split('.');
+    for (const sentence of newStr) {
+        const newS = sentence.toLowerCase();
+        if (newS.includes('quia')) {
+            // return console.log(sentence.replaceAll(' ', '_'));
+        }
+    }
+}
+
+workOnStr(str);
+const word = 'love this so much';
+const reverseWord = function(str) {
+        return str.split(' ').reverse().join(' ');
+    }
+    // console.log(reverseWord(word));
+
+
+const mixUp = function(str1, str2) {
+    const w1 = str1.slice(0, 2);
+    const w2 = str2.slice(0, 2);
+    const words = [w2.concat(...str1), w1.concat(...str2)];
+    return words.toString();
+}
+
+console.log(mixUp('mix', 'pod'));
+//'pox mid'
