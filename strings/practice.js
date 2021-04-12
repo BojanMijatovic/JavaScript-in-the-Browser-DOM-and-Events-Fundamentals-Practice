@@ -65,21 +65,42 @@ check(...technologies)
 // console.log(person);
 
 
+//      Bank Example
+
 const bank = {
     name: 'Intesa Bank',
     users: [],
-    money: 200,
+    deposit: 200,
+    totalAmount: 0,
+    packages: [{
+            name: 'loan',
+            amount: null
+        },
+        {
+            name: 'carCredit'
+        },
+        {
+            name: 'cacheCredit'
+        },
+        {
+            name: 'homeCredit'
+        }
+    ]
 }
 
-const addUser = function(userName, userLastName, userAmount = 0) {
+//    user
+const addUser = function(userName, userLastName, userAmount = 0, userPinCode = null) {
     const name = userName.toLowerCase();
     const lastName = userLastName.toLowerCase();
-    const amount = userAmount
+    const amount = userAmount;
+    const pinCode = userPinCode;
+
     bank.users.push({
         name,
         lastName,
         amount,
-        transactions: []
+        transactions: [],
+        pinCode
     })
 }
 
@@ -88,4 +109,11 @@ addUser('Phillip', 'Watson')
 addUser('Richard', 'Clarino', 1000)
 
 
-console.log(bank);
+const showUsers = function() {
+    for (const user of bank.users)
+        console.log(user);
+}
+
+
+
+// showUsers();
