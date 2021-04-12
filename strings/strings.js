@@ -10,7 +10,7 @@ const index = airline.indexOf('a'); //  return index of parameter case sensitive
 
 const sliceAirline = airline.slice(4);
 //  stings are primitive values so we can't mutate we must create new variable
-console.log(sliceAirline);
+// console.log(sliceAirline);
 
 const firstWord = airline.slice(0, airline.indexOf(' ')); // first word
 
@@ -53,7 +53,7 @@ const showBigPlane = function(plane) {
 // console.log(bigBoeing.slice(-1));
 
 const replace = [...bigBoeing.replaceAll('7', 'T')];
-console.log(replace);
+// console.log(replace);
 
 // ID for registration car  ED-4222; CD-7878
 
@@ -70,14 +70,11 @@ const correctPassengerName = function(name) {
 // correctPassengerName('maXIM');
 
 
-/*
- Example for today 
-  convert value with math calc to
-*/
+
 
 const priceEUR = '34,7e';
 const priceDollar = priceEUR.replace(',', '.').replace('e', '$');
-console.log(priceDollar);
+// console.log(priceDollar);
 
 
 // reg expression
@@ -104,10 +101,10 @@ const checkBaggage = function(items) {
 
 const welcome = `welcome to Novi Sad`;
 // split the value into array and every item is single value in arr
-console.log(welcome.split(' '));
+// console.log(welcome.split(' '));
 
 const [, , ...noviSad] = welcome.split(' ');
-console.log(noviSad);
+// console.log(noviSad);
 
 
 //  destructing string 
@@ -122,17 +119,20 @@ const capitalizeName = function(name) {
     return console.log(firstName[0].toUpperCase() + firstName.slice(1));
 }
 
-capitalizeName('andrew smith');
-capitalizeName('ana smith');
-capitalizeName('ted jonas');
+// capitalizeName('andrew smith');
+// capitalizeName('ana smith');
+// capitalizeName('ted jonas');
 
 
-//    Padding String
+//      PADDING  METHOD
 
 const message = 'Here is message';
 
+//  padStart 
+//  padEnd 
+
 const paddingMessage = message.padStart(22, '+');
-console.log(paddingMessage);
+// console.log(paddingMessage);
 
 const maskingCreditCard = function(card) {
     const cardStr = card + '';
@@ -140,9 +140,9 @@ const maskingCreditCard = function(card) {
     return console.log(lastNumbers.padStart(cardStr.length, '*'));
 }
 
-maskingCreditCard('4644666');
-maskingCreditCard('123465789');
-maskingCreditCard('46486544444');
+// maskingCreditCard('4644666');
+// maskingCreditCard('123465789');
+// maskingCreditCard('46486544444');
 
 
 //  repeat method
@@ -152,4 +152,78 @@ const repeatMethod = function(message) {
     return newM;
 }
 
-console.log(repeatMethod('This is test \n'));
+// console.log(repeatMethod('This is test \n'));
+
+/*
+underscore_case
+first_name
+Some_Variable
+calculate_AGE
+delayed_departure
+
+
+Should produce this output (5 separate console.log outputs):
+underscoreCase ✅
+firstName ✅✅
+someVariable ✅✅✅
+calculateAge ✅✅✅✅
+delayedDeparture ✅✅✅✅✅
+*/
+
+
+
+const practice = function(underScore) {
+    const arr = [];
+    const score = underScore.split('_');
+    const [firstW, secondW] = [...score]
+    const n = secondW[0].toUpperCase() + secondW.toLowerCase().slice(1);
+    const end = [firstW.toLowerCase(), ...n].toString();
+    const newEnd = end.replaceAll(',', '');
+    arr.push(newEnd);
+
+    for (const i of arr) {
+        const newI = i.slice(0);
+        const paddingNewI = newI.padEnd(newI.length + 1, '+')
+        return console.log(paddingNewI);
+    }
+}
+
+
+// practice('ABC_ABC');
+// practice('Taletn_TES');
+// practice('test_test');
+
+
+
+/*
+ Example for today
+  convert value with math calc to
+*/
+
+const dollar = 1;
+
+const converter = function(money) {
+    if (money === 'eur') {
+        const value = dollar * 0.83
+        return console.log(`Today euro is ${value} dollars`);
+    } else if (money === 'gbp') {
+        const value = dollar * 0.72;
+        return console.log(`Today gbp is ${value} pounds`);
+    }
+}
+
+converter('eur');
+converter('gbp');
+
+// ID for registration car  ED-4222; CD-7878
+
+const carRegistration = function(symbol) {
+    const num = Math.trunc(Math.random() * 10000);
+    const plate = `${symbol.toUpperCase()}-${num}`
+    return console.log(plate);
+}
+
+carRegistration('eS');
+carRegistration('aa');
+carRegistration('da');
+carRegistration('tr');
