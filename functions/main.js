@@ -119,7 +119,7 @@ const checkHouse = function(alarm, alarmStatus, gate, gateStatus, code) {
 
 
 //  FOOD Restaurant
-0
+
 const menu = ['potato', 'beer', 'cake', 'wine'];
 const menuStatus = function(item) {
     if (menu.includes(item)) {
@@ -167,8 +167,83 @@ const temperatureHouse = (deg) => {
     }
 }
 
+// HOF
 const houseStatus = (temp, deg) => {
     return temp(deg);
 }
 
-houseStatus(temperatureHouse, 33);
+// houseStatus(temperatureHouse, 33);
+
+
+//      call and apply Methods
+
+const lufthansa = {
+    name: 'lufthansa',
+    bookings: [],
+    itaCode: 'LH',
+    book(passengerName, flightNumber) {
+        console.log(`${passengerName} have seat on ${this.name} on flight ${this.itaCode} ${flightNumber}`);
+        this.bookings.push({
+            flight: `${this.itaCode}${flightNumber} ${this.name}`
+        })
+    }
+}
+
+lufthansa.book('Alex', '213');
+lufthansa.book('Ted', '448');
+
+console.log(lufthansa);
+
+const book = lufthansa.book;
+
+const euroWings = {
+    name: 'EuroWings',
+    itaCode: 'EU',
+    bookings: [],
+    //  add here method as OLD SOLUTION
+    // book
+}
+
+
+// OLD SOLUTION
+// euroWings.book('Simon', '111');
+// console.log(euroWings);
+
+//  new function on book FUNCTION 
+// book.call(euroWings, 'Garry', '567');
+
+
+
+//      BIND METHOD
+// book.call(euroWings, 'Garry', '567');
+
+const bookEW = book.bind(euroWings);
+
+// const bookLH = book.bind(lufthansa, 'Ed', '767');
+// bookLH();
+
+// bookEW('Ted', '898');
+// bookEW('Sarah', '232');
+
+
+const test = {
+    name: 'Test',
+    showName() {
+        console.log(this);
+        return console.log(`Greet ${this.name}`);
+    }
+}
+
+
+document.querySelector('.btn').addEventListener('click', test.showName.bind(test))
+
+const addTax = (rate, value) => value + value * rate;
+// console.log(addTax(0.20, 100));
+
+const addTaxSrb = addTax.bind(addTax, .4);
+// console.log(addTaxSrb(100));
+
+
+const newTest = (rate) => (value) => value + value * rate;
+
+// console.log(newTest(0.8)(800));
