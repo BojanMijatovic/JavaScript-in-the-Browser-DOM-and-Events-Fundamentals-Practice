@@ -53,14 +53,14 @@ const checkIn = function(flightNumber, passenger) {
     }
 }
 
-checkIn(flight, passenger)
+// checkIn(flight, passenger)
 
 
 const oneWord = function(str) {
     return str.replace(' ', '').toLowerCase();
 }
 
-console.log(oneWord('Love you'));
+// console.log(oneWord('Love you'));
 
 const upperFirstWord = function(str) {
     const [firstWord, ...rest] = str.split(' ');
@@ -82,14 +82,13 @@ const sumNums = function() {
     return 2 + 2;
 }
 
-
 const total = 100;
 //  HOF
 const showTotal = function(total, sum) {
     return console.log(total + sum());
 };
 
-showTotal(total, sumNums);
+// showTotal(total, sumNums);
 
 
 const freeRoom = 10;
@@ -98,6 +97,7 @@ const checkGuest = function(freeRoom) {
 }
 
 
+const password = 34124312;
 const showAlarmStatus = function(status) {
     status === 'on' ? console.log(`House is locked`) : console.log(`House is open please check alarm status`);
 }
@@ -106,11 +106,69 @@ const gateStatus = function(status) {
     return status === 'open' ? console.log(`Please close gate`) : console.log(`Gate is closed`);
 }
 
+//  HOF
+const checkHouse = function(alarm, alarmStatus, gate, gateStatus, code) {
+        if (password === code) {
+            alarm(alarmStatus);
+            gate(gateStatus);
+        } else {
+            console.log(`Wrong password`);
+        }
+    }
+    // checkHouse(showAlarmStatus, 'of', gateStatus, 'close', 34112);
 
-const checkHouse = function(alarm, alarmStatus, gate, gateStatus) {
-    alarm(alarmStatus);
-    gate(gateStatus);
+
+//  FOOD Restaurant
+0
+const menu = ['potato', 'beer', 'cake', 'wine'];
+const menuStatus = function(item) {
+    if (menu.includes(item)) {
+        return console.log(`We have on menu ${item}`);
+    }
 }
 
+const orderFood = function(showMenu, item) {
+    let order = false;
+    if (!order) {
+        return showMenu(item);
+    } else {
+        return console.log(`We are free`);
+    }
+}
 
-checkHouse(showAlarmStatus, 'of', gateStatus, 'close')
+// orderFood(menuStatus, 'wine')
+
+
+
+//        Functions Returning Functions
+
+// const greet = function(greeting) {
+//     return function(name) {
+//         console.log(`${greeting} ${name}`);
+//     }
+// }
+
+// const alex = greet('hello')('alex');
+// const ted = greet('hello')('ted');
+
+//      ARROW FUNCTION RETURNS ARROW FUNCTION
+const greet = (greetings) => (name) => console.log(`${greetings} ${name}`);
+// greet('Hello')('Alex');
+
+
+
+const temperatureHouse = (deg) => {
+    let turnHeater = 'off';
+    if (deg < 20) {
+        turnHeater = 'on';
+        return console.log(`Turn ${turnHeater} heater`);
+    } else {
+        return console.log(`Temperature now is ${deg} and heater is ${turnHeater}`);
+    }
+}
+
+const houseStatus = (temp, deg) => {
+    return temp(deg);
+}
+
+houseStatus(temperatureHouse, 33);
