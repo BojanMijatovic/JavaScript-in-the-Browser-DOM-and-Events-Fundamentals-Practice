@@ -46,7 +46,6 @@ On the other hand, when we pass an object as an argument on a function, the func
 
 
 const checkIn = function(flightNumber, passenger) {
-
     if (passenger.passportNumber === 95948784) {
         console.log(`Check in ${passenger.name}`);
     } else {
@@ -74,5 +73,44 @@ const transformer = function(str, fn) {
     return fn(str);
 }
 
-console.log(transformer('test Here', oneWord));
-transformer('javaScript is best', upperFirstWord);
+// console.log(transformer('test Here', oneWord));
+// transformer('javaScript is best', upperFirstWord);
+
+
+
+const sumNums = function() {
+    return 2 + 2;
+}
+
+
+const total = 100;
+//  HOF
+const showTotal = function(total, sum) {
+    return console.log(total + sum());
+};
+
+showTotal(total, sumNums);
+
+
+const freeRoom = 10;
+const checkGuest = function(freeRoom) {
+    return freeRoom - 5;
+}
+
+
+const showAlarmStatus = function(status) {
+    status === 'on' ? console.log(`House is locked`) : console.log(`House is open please check alarm status`);
+}
+
+const gateStatus = function(status) {
+    return status === 'open' ? console.log(`Please close gate`) : console.log(`Gate is closed`);
+}
+
+
+const checkHouse = function(alarm, alarmStatus, gate, gateStatus) {
+    alarm(alarmStatus);
+    gate(gateStatus);
+}
+
+
+checkHouse(showAlarmStatus, 'of', gateStatus, 'close')
