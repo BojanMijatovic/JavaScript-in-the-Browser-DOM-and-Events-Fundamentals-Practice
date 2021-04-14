@@ -61,12 +61,29 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+
+//  work on APP
+
+
+const printMovements = function(movements) {
+    containerMovements.innerHTML = '';
+    movements.forEach(function(movement, id) {
+        const type = movement > 0 ? 'deposit' : 'withdrawal'
+        const html = `
+          <div class="movements__row">
+          <div class="movements__type movements__type--${type}">${id + 1} ${type}</div>
+      <div class="movements__value" >${movement}</div >
+        </div>
+  `;
+        containerMovements.insertAdjacentHTML('afterbegin', html);
+    })
+}
+
+printMovements(account1.movements)
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
-
-
-
 
 
 /////////////////////////////////////////////////
@@ -111,9 +128,9 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // method executes a provided function once for each array element. We have 3 parameters SINGLE ITEM, ITERATOR and ARRAY
 // movements.forEach(function(movement, id) {
 //     if (movement > 0) {
-//         return console.log(`${id} Deposit ${movement}`);
+//         return console.log(`${ id } Deposit ${ movement } `);
 //     } else {
-//         return console.log(`${id} Withdraw ${movement}`);
+//         return console.log(`${ id } Withdraw ${ movement } `);
 //     }
 // })
 
@@ -124,6 +141,6 @@ const currencies = new Map([
     ['GBP', 'Pound sterling'],
 ]);
 
-currencies.forEach(function(item, key) {
-    console.log(`${key} ${item}`);
-})
+// currencies.forEach(function(item, key) {
+//     console.log(`${ key } ${ item } `);
+// })
