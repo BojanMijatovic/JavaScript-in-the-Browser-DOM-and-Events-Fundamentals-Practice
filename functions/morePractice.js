@@ -76,7 +76,9 @@ const welcome = person.greet.bind(newUser);
 // greetUser('Redd');
 
 
-//  practice 1
+
+//  example 1
+
 const data = [];
 
 const userName = function(user) {
@@ -90,7 +92,10 @@ console.log(data);
 userName('pera|peric')
 userName('marko|markovic')
 
-//  practice 2 
+
+
+//  example 2
+
 const calcStr = function(str1, str2) {
     const firstStr = str1.slice(0, 2) + str1.slice(0, 2);
     const secondStr = str2.slice(-3);
@@ -101,7 +106,9 @@ const calcStr = function(str1, str2) {
 calcStr('abcdef', 'ghijkl')
 
 
-//  practice 3 
+
+//  example 3
+
 const acronym = function(str) {
     const split = str.split(' ');
     let newStr = ''
@@ -111,10 +118,12 @@ const acronym = function(str) {
     console.log(newStr);
 }
 
-
 acronym('random access memory');
 
+
+
 //  example 4
+
 const car = {
     mark: 'Ford',
     model: 'Focus',
@@ -135,6 +144,56 @@ const car = {
     }
 }
 
-car.newColor('blue');
-car.newColor('black');
-console.log(car);
+// car.newColor('blue');
+// car.newColor('black');
+// console.log(car);
+
+
+
+// example 5
+
+const showMessage = function(name) {
+    return `Happy b-day ${name}`;
+}
+
+//  callback 
+const sendCard = function(message, name) {
+    return console.log(message(name));
+}
+
+sendCard(showMessage, 'Alex');
+
+
+
+//  example 6
+
+const sayHello = function(name, lastName, gender) {
+    if (gender === 'man') {
+        gender = 'Mr.'
+    } else {
+        gender = 'Mrs.'
+    }
+    return `Hello ${gender} ${name} ${lastName} you are welcome.`;
+}
+
+//  callback 
+const welcomeMessage = function(message, userName, userLastName, gender) {
+    return console.log(message(userName, userLastName, gender));
+}
+
+welcomeMessage(sayHello, 'Alex', 'Robinson', 'man')
+
+
+
+//  example 7
+
+const names = ['Ted', 'Roy', 'Gary'];
+
+const showNames = function(names) {
+    let num = 1;
+    for (const name of names) {
+        console.log(`${num++} ${name}`);
+    }
+}
+
+showNames(names)
