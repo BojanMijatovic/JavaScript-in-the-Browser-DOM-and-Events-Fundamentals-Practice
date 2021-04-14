@@ -65,11 +65,7 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // LECTURES
 
-const currencies = new Map([
-    ['USD', 'United States dollar'],
-    ['EUR', 'Euro'],
-    ['GBP', 'Pound sterling'],
-]);
+
 
 
 
@@ -83,12 +79,12 @@ const arr = ['a', 'b', 'c', 'd', 'e', 'f']
 
 //  Slice Method
 //  this method will return new array and don't mutate old array
-console.log(arr.slice(2));
+// console.log(arr.slice(2));
 //  end parameter is not included in new array
 
 //  Splice Method
 // second parameter is indicating the number of elements in the array to remove from start or first parameter.
-console.log(arr.splice(0, 3, 'Test', 'name', 'ana'));
+// console.log(arr.splice(0, 3, 'Test', 'name', 'ana'));
 //  change original array 
 
 //  Reverse Method
@@ -101,11 +97,11 @@ const arr2 = ['g', 'h', 't', 'i', 'p']
 
 // method is used to merge two or more arrays.This method does not change the existing arrays, but instead returns a new array.
 const letters = arr.concat(arr2);
-console.log(letters);
+// console.log(letters);
 
 //  Join Method
 // Specifies a string to separate each pair of adjacent elements of the array. The separator is converted to a string if necessary
-console.log(letters.join('-'));
+// console.log(letters.join('-'));
 
 //  For Each Method
 
@@ -113,10 +109,21 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // High Order FUNCTION! forEach
 // method executes a provided function once for each array element. We have 3 parameters SINGLE ITEM, ITERATOR and ARRAY
-movements.forEach(function(movement, id) {
-    if (movement > 0) {
-        return console.log(`${id} Deposit ${movement}`);
-    } else {
-        return console.log(`${id} Withdraw ${movement}`);
-    }
+// movements.forEach(function(movement, id) {
+//     if (movement > 0) {
+//         return console.log(`${id} Deposit ${movement}`);
+//     } else {
+//         return console.log(`${id} Withdraw ${movement}`);
+//     }
+// })
+
+//  forEach with Maps and Sets
+const currencies = new Map([
+    ['USD', 'United States dollar'],
+    ['EUR', 'Euro'],
+    ['GBP', 'Pound sterling'],
+]);
+
+currencies.forEach(function(item, key) {
+    console.log(`${key} ${item}`);
 })
