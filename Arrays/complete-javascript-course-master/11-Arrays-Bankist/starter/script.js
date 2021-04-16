@@ -79,7 +79,6 @@ const printMovements = function(movements) {
     })
 }
 
-printMovements(account1.movements)
 
 
 const createUsernames = function(accounts) {
@@ -101,7 +100,52 @@ const calcDisplayBalance = function(movements) {
     return labelBalance.textContent = `${balance} EUR`;
 }
 
-calcDisplayBalance(account1.movements)
+
+//  changing
+//  not so good practice not readable
+const calcDisplaySummary = function(movements) {
+    // summary all income 
+    const income = movements.filter(movement => movement > 0).reduce((acc, current) => acc + current, 0);
+    labelSumIn.textContent = `${income}EUR`;
+    // summary all outcome 
+    const outcome = movements.filter(movement => movement < 0).reduce((acc, current) => acc + current, 0);
+    labelSumOut.textContent = `${Math.abs(outcome)}EUR`;
+    //  interest of bank
+    const interest = movements.filter(movement => movement > 0).map(deposit => deposit * 1.2 / 100).filter(interest => interest >= 1).reduce((acc, current) => acc + current, 0);
+    labelSumInterest.textContent = interest;
+}
+
+
+
+// Event Handlers
+//  LOGIN 
+
+let currentAccount;
+
+btnLogin.addEventListener('click', function(e) {
+    //when is btn in form element default behavior is to page reload
+    e.preventDefault();
+
+    currentAccount = accounts.find(account => account.userName === inputLoginUsername.value);
+    if (currentAccount && currentAccount.pin === Number(inputLoginPin.value)) {
+        console.log('login');
+        //  display welcome message
+        labelWelcome.textContent = `Welcome ${currentAccount.owner.split(' ')[0]}`;
+        containerApp.style.opacity = 100;
+        //  display movements
+        printMovements(currentAccount.movements);
+
+        //  display balance
+        calcDisplayBalance(currentAccount.movements);
+
+        //  display summary
+        calcDisplaySummary(currentAccount.movements)
+    }
+    console.log(currentAccount);
+})
+
+
+
 
 
 /////////////////////////////////////////////////
@@ -225,12 +269,12 @@ const withdrawals = movements.filter(amount => amount < 0);
 
 //  return one value !!!
 //                                                          accumulator => snowball
-const balance = movements.reduce((accumulator, current, currentIndex) => {
-    console.log(`${currentIndex} ${current}`);
-    return accumulator + current;
-}, 0);
+// const balance = movements.reduce((accumulator, current, currentIndex) => {
+//     console.log(`${currentIndex} ${current}`);
+//     return accumulator + current;
+// }, 0);
 
-console.log(balance);
+// console.log(balance);
 
 // show max 
 /*if we don't supply the initial value of the accumulator to reduce() method, it will be the value of the first element in the array and iteration will start from the second element
@@ -238,4 +282,24 @@ console.log(balance);
 */
 const max = movements.reduce((acc, current) => Math.max(acc, current), movements[0]);
 
-console.log(max);
+// console.log(max);
+
+
+//  METHOD CHANGING
+//  Pipeline
+const totalInUSD = movements.filter(movement => movement > 0).map(move => move * euroToUsd).reduce((acc, current) => acc + current, 0);
+// console.log(totalInUSD);
+
+// FIND METHOD
+
+
+//  returns first element of array which is in condition and first ELEMENT
+const firstWithdrawal = movements.find(movement => movement < 0);
+// console.log(firstWithdrawal);
+
+
+// const findAccount = accounts.find(acc => acc.owner === 'Jessica Davis');
+// console.log(findAccount);
+
+const account = (acc, name) => acc.find(acc => acc.owner === name);
+// console.log(account(accounts, 'Jessica Davis'));

@@ -49,5 +49,19 @@ console.log(calcAverageHumanAge);
 const excludeDogs = calcAverageHumanAge.filter(dog => dog >= 18);
 console.log(excludeDogs);
 
-const averageHumanAge = excludeDogs.reduce((acc, current, i, arr) => (acc + current) / arr.length, excludeDogs[0]);
+const averageHumanAge = excludeDogs.reduce((acc, current, i, arr) => acc + current, 0);
 console.log(averageHumanAge);
+
+const chainTest = (data) => {
+    // return data.map(dogAge => { 
+    //     if (dogAge <= 2) {
+    //         return dogAge = 2 * dogAge
+    //     } else if (dogAge > 2) {
+    //         return dogAge = 16 + dogAge * 4
+    //     }
+    // }).filter(age => age > 18).reduce((acc, current, arr) => acc + current, 0)
+    return data.map(dogAge => dogAge <= 2 ? dogAge * 2 : 16 + dogAge * 4).filter(age => age > 18).reduce((acc, current, arr) => acc + current, 0)
+}
+
+const total = chainTest(data1);
+console.log(total);
