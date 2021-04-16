@@ -12,7 +12,7 @@ const checkDogs = function(dogsJulia, dogsKate) {
     })
 }
 
-checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3])
+// checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3])
 
 
 /*Your tasks:
@@ -44,13 +44,13 @@ const calcAverageHumanAge = data1.map(dogAge => {
     }
 })
 
-console.log(calcAverageHumanAge);
+// console.log(calcAverageHumanAge);
 
 const excludeDogs = calcAverageHumanAge.filter(dog => dog >= 18);
-console.log(excludeDogs);
+// console.log(excludeDogs);
 
 const averageHumanAge = excludeDogs.reduce((acc, current, i, arr) => acc + current, 0);
-console.log(averageHumanAge);
+// console.log(averageHumanAge);
 
 const chainTest = (data) => {
     // return data.map(dogAge => { 
@@ -63,5 +63,81 @@ const chainTest = (data) => {
     return data.map(dogAge => dogAge <= 2 ? dogAge * 2 : 16 + dogAge * 4).filter(age => age > 18).reduce((acc, current, arr) => acc + current, 0)
 }
 
-const total = chainTest(data1);
-console.log(total);
+// const total = chainTest(data1);
+// console.log(total);
+
+
+// EXAMPLE TO PRACTICE
+
+const account = {
+    account1: {
+        name: 'Alex',
+        age: 33,
+        hobbies: ['airsoft', 'coding'],
+        job: true,
+        moneyTotal: 5000,
+        socialNetworks: {
+            facebook: true,
+            likes: 100
+        }
+    },
+    account2: {
+        name: 'Ted',
+        age: 50,
+        hobbies: ['reading books', 'ride motor'],
+        job: true,
+        moneyTotal: 10000,
+        socialNetworks: {
+            facebook: false,
+            likes: 0
+        }
+    },
+    account3: {
+        name: 'Ferdinand',
+        age: 22,
+        hobbies: ['beer', 'coding'],
+        job: false,
+        moneyTotal: 500,
+        socialNetworks: {
+            facebook: true,
+            likes: 750
+        }
+    },
+    account4: {
+        name: 'Darlan',
+        age: 29,
+        hobbies: ['learn', 'javaScript'],
+        job: true,
+        moneyTotal: 3000,
+        socialNetworks: {
+            facebook: false,
+            likes: 20
+        }
+    }
+}
+
+const accounts = [account.account1, account.account2, account.account3, account.account4];
+console.log(accounts);
+
+
+accounts.forEach(acc => console.log(`Welcome ${acc.name}`));
+accounts.map((acc) => {
+    return console.log(`${acc.name} have ${acc.hobbies.length} hobbies`);
+})
+
+
+accounts.map(acc => console.log(`You have more 200$ on money now  you have ${acc.moneyTotal + 200} $`))
+const youngBoys = accounts.filter(acc => acc.age < 30).map(boys => console.log(`Boys are ${boys.name} with age ${boys.age}`));
+
+
+const totalAge = accounts.reduce((acc, current) => acc + current.age, 0);
+console.log(`You have total age ${totalAge}`);
+
+const totalLikes = accounts.reduce((acc, likesNum) => acc + likesNum.socialNetworks.likes, 0);
+console.log(totalLikes);
+
+const findOld = (accounts, age) => {
+    return accounts.filter(acc => acc.age > age)
+}
+
+console.log(findOld(accounts, 40));
