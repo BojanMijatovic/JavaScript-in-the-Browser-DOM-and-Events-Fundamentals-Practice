@@ -81,6 +81,20 @@ const printMovements = function(movements) {
 
 printMovements(account1.movements)
 
+const createUsernames = function(accounts) {
+    //                                              create new array
+    /* for every account we first put all to lower case then split name and last name and mapping to new array where we need first letter
+    and we create new key in obj account     --- acc.userName ---
+     */
+    accounts.forEach(function(acc) {
+        acc.userName = acc.owner.toLowerCase().split(' ').map(letter => letter[0]).join('')
+    })
+
+}
+
+createUsernames(accounts);
+console.log(accounts);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -122,7 +136,7 @@ const letters = arr.concat(arr2);
 
 //  For Each Method
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
 
 // High Order FUNCTION! forEach
 // method executes a provided function once for each array element. We have 3 parameters SINGLE ITEM, ITERATOR and ARRAY
@@ -144,3 +158,43 @@ const currencies = new Map([
 // currencies.forEach(function(item, key) {
 //     console.log(`${ key } ${ item } `);
 // })
+
+//  MAP METHOD
+
+
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const euroToUsd = 1.1;
+// arrow function
+const usdMovement = movements.map(movement => movement * euroToUsd)
+
+// callback function
+// const usdMovement = movements.map(function (move) {
+//     return move * euroToUsd;
+// })
+
+console.log(usdMovement);
+
+const newArr = [];
+for (const move of movements) {
+    newArr.push(move * euroToUsd);
+}
+
+console.log(newArr);
+
+
+const movementsDescription = movements.map((move, id) => {
+    //  shorter way to return
+
+    return `${id + 1} ${move > 1 ? 'deposit' : 'withdrawal'} ${move}`
+
+    //  this way 
+
+    // if (move > 0) {
+    //     return `${id + 1} deposit ${move}$`;
+    // } else {
+    //     return `${id + 1} withdrawal ${move}`;
+    // }
+})
+
+console.log(movementsDescription);
