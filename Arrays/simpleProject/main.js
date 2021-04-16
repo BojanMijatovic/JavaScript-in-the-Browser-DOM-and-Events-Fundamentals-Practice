@@ -141,3 +141,22 @@ const findOld = (accounts, age) => {
 }
 
 console.log(findOld(accounts, 40));
+
+accounts.map(acc => {
+    return console.log(`${acc.name} have ${acc.hobbies.map(i => i)}`);
+})
+
+
+const removeFb = (users) => users.filter(user => !user.socialNetworks.facebook)
+console.log(removeFb(accounts));
+
+const findRemove = (accounts) => {
+    return accounts.findIndex(acc => !acc.socialNetworks.facebook)
+}
+
+accounts.splice(findRemove(accounts), 1);
+console.log(accounts);
+
+console.log(findRemove(accounts));
+accounts.splice(findRemove(accounts), 1);
+console.log(accounts);
