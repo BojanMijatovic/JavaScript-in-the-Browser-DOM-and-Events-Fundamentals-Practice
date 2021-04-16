@@ -81,19 +81,28 @@ const printMovements = function(movements) {
 
 printMovements(account1.movements)
 
+
 const createUsernames = function(accounts) {
     //                                              create new array
     /* for every account we first put all to lower case then split name and last name and mapping to new array where we need first letter
     and we create new key in obj account     --- acc.userName ---
      */
-    accounts.forEach(function(acc) {
-        acc.userName = acc.owner.toLowerCase().split(' ').map(letter => letter[0]).join('')
+    accounts.forEach(function(account) {
+        account.userName = account.owner.toLowerCase().split(' ').map(letter => letter[0]).join('')
     })
 
 }
 
 createUsernames(accounts);
-console.log(accounts);
+
+
+const calcDisplayBalance = function(movements) {
+    const balance = movements.reduce((acc, currentMovement) => acc + currentMovement);
+    return labelBalance.textContent = `${balance} EUR`;
+}
+
+calcDisplayBalance(account1.movements)
+
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -173,14 +182,14 @@ const usdMovement = movements.map(movement => movement * euroToUsd)
 //     return move * euroToUsd;
 // })
 
-console.log(usdMovement);
+// console.log(usdMovement);
 
 const newArr = [];
 for (const move of movements) {
     newArr.push(move * euroToUsd);
 }
 
-console.log(newArr);
+// console.log(newArr);
 
 
 const movementsDescription = movements.map((move, id) => {
@@ -197,4 +206,36 @@ const movementsDescription = movements.map((move, id) => {
     // }
 })
 
-console.log(movementsDescription);
+// console.log(movementsDescription);
+
+//  FILTER METHOD 
+
+
+
+//  return new array
+const deposits = movements.filter(amount => amount > 0);
+// console.log(deposits);
+
+const withdrawals = movements.filter(amount => amount < 0);
+// console.log(withdrawals);
+
+// REDUCE METHOD
+
+
+
+//  return one value !!!
+//                                                          accumulator => snowball
+const balance = movements.reduce((accumulator, current, currentIndex) => {
+    console.log(`${currentIndex} ${current}`);
+    return accumulator + current;
+}, 0);
+
+console.log(balance);
+
+// show max 
+/*if we don't supply the initial value of the accumulator to reduce() method, it will be the value of the first element in the array and iteration will start from the second element
+                                                                                     for initial value is nice to be first value off array 
+*/
+const max = movements.reduce((acc, current) => Math.max(acc, current), movements[0]);
+
+console.log(max);
