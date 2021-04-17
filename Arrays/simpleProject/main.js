@@ -117,46 +117,105 @@ const account = {
 }
 
 const accounts = [account.account1, account.account2, account.account3, account.account4];
-console.log(accounts);
+// console.log(accounts);
 
 
-accounts.forEach(acc => console.log(`Welcome ${acc.name}`));
-accounts.map((acc) => {
-    return console.log(`${acc.name} have ${acc.hobbies.length} hobbies`);
-})
+// accounts.forEach(acc => console.log(`Welcome ${acc.name}`));
+// accounts.map((acc) => {
+//     return console.log(`${acc.name} have ${acc.hobbies.length} hobbies`);
+// })
 
 
-accounts.map(acc => console.log(`You have more 200$ on money now  you have ${acc.moneyTotal + 200} $`))
-const youngBoys = accounts.filter(acc => acc.age < 30).map(boys => console.log(`Boys are ${boys.name} with age ${boys.age}`));
+// accounts.map(acc => console.log(`You have more 200$ on money now  you have ${acc.moneyTotal + 200} $`))
+// const youngBoys = accounts.filter(acc => acc.age < 30).map(boys => console.log(`Boys are ${boys.name} with age ${boys.age}`));
 
 
 const totalAge = accounts.reduce((acc, current) => acc + current.age, 0);
-console.log(`You have total age ${totalAge}`);
+// console.log(`You have total age ${totalAge}`);
 
 const totalLikes = accounts.reduce((acc, likesNum) => acc + likesNum.socialNetworks.likes, 0);
-console.log(totalLikes);
+// console.log(totalLikes);
 
 const findOld = (accounts, age) => {
     return accounts.filter(acc => acc.age > age)
 }
 
-console.log(findOld(accounts, 40));
+// console.log(findOld(accounts, 40));
 
-accounts.map(acc => {
-    return console.log(`${acc.name} have ${acc.hobbies.map(i => i)}`);
-})
+// accounts.map(acc => {
+//     return console.log(`${acc.name} have ${acc.hobbies.map(i => i)}`);
+// })
 
 
 const removeFb = (users) => users.filter(user => !user.socialNetworks.facebook)
-console.log(removeFb(accounts));
+    // console.log(removeFb(accounts));
 
 const findRemove = (accounts) => {
     return accounts.findIndex(acc => !acc.socialNetworks.facebook)
 }
 
 accounts.splice(findRemove(accounts), 1);
-console.log(accounts);
+// console.log(accounts);
 
-console.log(findRemove(accounts));
+// console.log(findRemove(accounts));
 accounts.splice(findRemove(accounts), 1);
-console.log(accounts);
+// console.log(accounts);
+
+
+const numberOfHobbies = accounts.reduce((acc, current) => {
+    return acc + current.hobbies.length
+}, 0);
+
+// console.log(numberOfHobbies);
+
+
+const facebookPages = [{
+    title: "1. FC Pauli",
+    fans: 2011,
+    posts: [{
+            title: "Loss in first game",
+            content: "long text",
+            likes: 12,
+            comments: [{
+                    text: "what a bad game!",
+                },
+                {
+                    text: "trainers fault!",
+                },
+            ],
+        },
+        {
+            title: "90 minutes thriller",
+            content: "long text 1231",
+            likes: 132,
+            comments: [{
+                    text: "amazing game",
+                },
+                {
+                    text: "great to see you winning",
+                },
+                {
+                    text: "90 minutes standing",
+                },
+            ],
+        },
+    ],
+}, ];
+
+
+
+// 1. Get the number of fans per page
+const [fans] = facebookPages;
+console.log(fans.fans);
+
+
+// 2. Get the aggregation of post likes per page
+const [firstPage, secondPage] = fans.posts;
+console.log(`${firstPage.likes + secondPage.likes}`);
+
+
+// 3. Get the number of post comments per page
+const numberComments = (arr) => {
+    return arr.reduce((acc, current) => acc + current.comments.length, 0);
+}
+console.log(numberComments(fans.posts));
