@@ -379,15 +379,42 @@ const account = (acc, name) => acc.find(acc => acc.owner === name);
 // console.log(account(accounts, 'Jessica Davis'));
 
 const test = movements.some(movement => movement > 0);
-console.log(test);
+// console.log(test);
 
 
 
 //  Sort Method
-console.log(movements);
-
+// console.log(movements);
 movements.sort((a, b) => a - b);
-console.log(movements);
-
+// console.log(movements);
 movements.sort((a, b) => b - a);
-console.log(movements);
+// console.log(movements);
+
+
+
+//  MORE PRACTICE
+
+// example 1
+//  show all deposits from bank
+const depositSum = accounts.map(account => account.movements.filter(amount => amount > 0));
+console.log(depositSum.flat().reduce((acc, current) => acc + current, 0));
+
+//example 2 
+// show deposits bigger from 1000
+const deposit1000 = accounts.map(account => account.movements).flat(1);
+console.log(deposit1000.filter(deposit => deposit >= 1000));
+
+let a = 10;
+console.log(a++); //  10
+console.log(a); //      11
+console.log(++a); //  12
+
+// example 3
+// show title case
+const titleCase = (str) => {
+    const newStr = str.split(' ');
+    return newStr.map(word => word.length === 1 ? word[0].toLowerCase() : word[0].toUpperCase() + word.slice(1)).join(' ');
+}
+
+
+console.log(titleCase('this is nice a title case'));
