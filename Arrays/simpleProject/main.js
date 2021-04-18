@@ -211,7 +211,7 @@ console.log(fans.fans);
 
 // 2. Get the aggregation of post likes per page
 const [firstPage, secondPage] = fans.posts;
-console.log(`${firstPage.likes + secondPage.likes}`);
+console.log(firstPage.likes + secondPage.likes);
 
 
 // 3. Get the number of post comments per page
@@ -219,3 +219,5 @@ const numberComments = (arr) => {
     return arr.reduce((acc, current) => acc + current.comments.length, 0);
 }
 console.log(numberComments(fans.posts));
+
+fans.posts.map((post) => post.comments.map((comment) => console.log(`${comment.text}`)))

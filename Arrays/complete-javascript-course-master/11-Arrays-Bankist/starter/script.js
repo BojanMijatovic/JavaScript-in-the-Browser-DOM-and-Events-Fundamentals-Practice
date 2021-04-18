@@ -65,6 +65,7 @@ const inputClosePin = document.querySelector('.form__input--pin');
 //  work on APP
 
 
+
 const printMovements = function(movements) {
     containerMovements.innerHTML = '';
     movements.forEach(function(movement, id) {
@@ -81,6 +82,7 @@ const printMovements = function(movements) {
 
 
 
+//  user
 const createUsernames = function(accounts) {
     //                                              create new array
     /* for every account we first put all to lower case then split name and last name and mapping to new array where we need first letter
@@ -91,14 +93,16 @@ const createUsernames = function(accounts) {
     })
 
 }
-
 createUsernames(accounts);
 
 
+
+// balance
 const calcDisplayBalance = function(account) {
     account.balance = account.movements.reduce((acc, currentMovement) => acc + currentMovement);
     return labelBalance.textContent = `${account.balance} EUR`;
 }
+
 
 
 //  changing
@@ -115,10 +119,9 @@ const calcDisplaySummary = function(account) {
     labelSumInterest.textContent = interest;
 }
 
+
+
 //  UPDATE UI 
-
-
-
 const updateUI = function(account) {
 
     //  display movements
@@ -135,10 +138,7 @@ const updateUI = function(account) {
 
 // Event Handlers
 //  LOGIN 
-
-
 let currentAccount;
-
 btnLogin.addEventListener('click', function(e) {
     //when is btn in form element default behavior is to page reload
     e.preventDefault();
@@ -159,10 +159,9 @@ btnLogin.addEventListener('click', function(e) {
 
 })
 
+
+
 //  Transfer money 
-
-
-
 btnTransfer.addEventListener('click', function(e) {
     e.preventDefault();
 
@@ -181,9 +180,25 @@ btnTransfer.addEventListener('click', function(e) {
     }
 })
 
+
+
+// loan
+btnLoan.addEventListener('click', function(e) {
+    e.preventDefault();
+    const loanAmount = Number(inputLoanAmount.value);
+    const requestLoan = currentAccount.movements.some(movement => movement >= loanAmount / 10)
+
+    if (loanAmount > 0 && requestLoan) {
+        // add loan 
+        currentAccount.movements.push(loanAmount);
+    }
+    updateUI(currentAccount);
+    inputLoanAmount.value = '';
+})
+
+
+
 //  Close account
-
-
 btnClose.addEventListener('click', function(e) {
     e.preventDefault();
 
@@ -198,7 +213,6 @@ btnClose.addEventListener('click', function(e) {
 
         containerApp.style.opacity = 0;
     }
-
 })
 
 
@@ -214,25 +228,33 @@ btnClose.addEventListener('click', function(e) {
 //      METHODS
 
 //  start with simple array methods
-
 const arr = ['a', 'b', 'c', 'd', 'e', 'f']
+
+
 
 //  Slice Method
 //  this method will return new array and don't mutate old array
 // console.log(arr.slice(2));
 //  end parameter is not included in new array
 
+
+
+
 //  Splice Method
 // second parameter is indicating the number of elements in the array to remove from start or first parameter.
 // console.log(arr.splice(0, 3, 'Test', 'name', 'ana'));
 //  change original array 
 
+
+
+
 //  Reverse Method
 //method that reverse array , mutating the original, and returning a reference to the array.
 arr.reverse();
 
-//  Concat Method
 
+
+//  Concat Method
 const arr2 = ['g', 'h', 't', 'i', 'p']
 
 // method is used to merge two or more arrays.This method does not change the existing arrays, but instead returns a new array.
@@ -243,10 +265,9 @@ const letters = arr.concat(arr2);
 // Specifies a string to separate each pair of adjacent elements of the array. The separator is converted to a string if necessary
 // console.log(letters.join('-'));
 
+
+
 //  For Each Method
-
-
-
 // High Order FUNCTION! forEach
 // method executes a provided function once for each array element. We have 3 parameters SINGLE ITEM, ITERATOR and ARRAY
 // movements.forEach(function(movement, id) {
@@ -256,6 +277,8 @@ const letters = arr.concat(arr2);
 //         return console.log(`${ id } Withdraw ${ movement } `);
 //     }
 // })
+
+
 
 //  forEach with Maps and Sets
 const currencies = new Map([
@@ -268,10 +291,9 @@ const currencies = new Map([
 //     console.log(`${ key } ${ item } `);
 // })
 
+
+
 //  MAP METHOD
-
-
-
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 const euroToUsd = 1.1;
 // arrow function
@@ -293,36 +315,32 @@ for (const move of movements) {
 
 
 const movementsDescription = movements.map((move, id) => {
-    //  shorter way to return
+        //  shorter way to return
+        return `${id + 1} ${move > 1 ? 'deposit' : 'withdrawal'} ${move}`
 
-    return `${id + 1} ${move > 1 ? 'deposit' : 'withdrawal'} ${move}`
+        //  this way 
 
-    //  this way 
+        // if (move > 0) {
+        //     return `${id + 1} deposit ${move}$`;
+        // } else {
+        //     return `${id + 1} withdrawal ${move}`;
+        // }
+    })
+    // console.log(movementsDescription);
 
-    // if (move > 0) {
-    //     return `${id + 1} deposit ${move}$`;
-    // } else {
-    //     return `${id + 1} withdrawal ${move}`;
-    // }
-})
 
-// console.log(movementsDescription);
 
 //  FILTER METHOD 
-
-
-
 //  return new array
 const deposits = movements.filter(amount => amount > 0);
 // console.log(deposits);
-
 const withdrawals = movements.filter(amount => amount < 0);
 // console.log(withdrawals);
 
+
+
+
 // REDUCE METHOD
-
-
-
 //  return one value !!!
 //                                                          accumulator => snowball
 // const balance = movements.reduce((accumulator, current, currentIndex) => {
@@ -337,8 +355,8 @@ const withdrawals = movements.filter(amount => amount < 0);
                                                                                      for initial value is nice to be first value off array 
 */
 const max = movements.reduce((acc, current) => Math.max(acc, current), movements[0]);
-
 // console.log(max);
+
 
 
 //  METHOD CHANGING
@@ -346,9 +364,9 @@ const max = movements.reduce((acc, current) => Math.max(acc, current), movements
 const totalInUSD = movements.filter(movement => movement > 0).map(move => move * euroToUsd).reduce((acc, current) => acc + current, 0);
 // console.log(totalInUSD);
 
+
+
 // FIND METHOD
-
-
 //  returns first element of array which is in condition and first ELEMENT
 const firstWithdrawal = movements.find(movement => movement < 0);
 // console.log(firstWithdrawal);
@@ -359,3 +377,17 @@ const firstWithdrawal = movements.find(movement => movement < 0);
 
 const account = (acc, name) => acc.find(acc => acc.owner === name);
 // console.log(account(accounts, 'Jessica Davis'));
+
+const test = movements.some(movement => movement > 0);
+console.log(test);
+
+
+
+//  Sort Method
+console.log(movements);
+
+movements.sort((a, b) => a - b);
+console.log(movements);
+
+movements.sort((a, b) => b - a);
+console.log(movements);
