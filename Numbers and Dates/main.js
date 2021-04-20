@@ -1,5 +1,5 @@
-const num1 = 2;
-const num = 2.0;
+// const num1 = 2;
+// const num = 2.0;
 // console.log(num === num1);
 // console.log(0.1 + 0.2 === 0.3);
 // console.log(0.1 + 0.2);
@@ -15,7 +15,7 @@ const num = 2.0;
 
 //  Parse int and float
 
-let a = 1.3;
+// let a = 1.3;
 // console.log(Number.parseFloat(a));
 
 
@@ -30,14 +30,50 @@ let a = 1.3;
 // console.log(Math.min(1, 2, 355, 6, 7, 8, 9));
 
 
+
 // Remainder Operator
 
-const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const num = BigInt(21313);
+// console.log(num);
+const s = Math.sqrt(Number(BigInt(16)));
+// console.log(s);
 
-arr.forEach((num, id) => {
-    if (num % 2 === 0) {
-        return console.log(`Num ${id + 1} is even`);
-    } else if (num % 1 === 0) {
-        return console.log(`Num ${id + 1} is odd`);
-    }
-})
+
+
+//  DATES
+
+// const date = new Date();
+// console.log(date.getDate(), date.getDay(), date.toLocaleString());
+
+
+
+//  TIMERS and INTERVAL TIMERS
+
+
+setTimeout(() => {
+    // console.log(`Pizza is ready`);
+}, 1000);
+
+setTimeout(() => {
+    // console.log(`Test this`);
+}, 1000);
+
+
+const arr = ['name', 'lastName'];
+
+setTimeout((n, l) => {
+    console.log(`Now is little clear with set time out with ${n} and ${l}`);
+}, 1000, ...arr);
+
+// console.log(a = 2);
+
+//  clear timer
+
+const ingredients = ['tomato', 'olive'];
+const makePizza = setTimeout((ing1, ing2) => {
+    console.log(`Here is pizza with ${ing1} and ${ing2}`);
+}, 2000, ...ingredients);
+
+// if (ingredients.includes('olive')) {
+//     clearTimeout(makePizza);
+// }
