@@ -77,3 +77,29 @@ const makePizza = setTimeout((ing1, ing2) => {
 // if (ingredients.includes('olive')) {
 //     clearTimeout(makePizza);
 // }
+
+let time = 70;
+
+
+
+
+// INTERVAL
+const int = setInterval(() => {
+    let min = Math.trunc(time / 60);
+    let sec = time % 60;
+    // const date = new Date();
+    // console.log(`${date.getSeconds()} , ${date.getMinutes()}`);
+    // console.log(`${--time}`);
+    time--;
+
+    if (sec === 0 && min === 0) {
+        min--;
+        console.log(`End of time`);
+        clearInterval(int);
+    }
+
+    console.log(`Min ${min}`);
+    console.log(`Sec ${sec}`);
+}, 1000);
+
+// clearInterval(int);
