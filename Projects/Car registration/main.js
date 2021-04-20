@@ -43,7 +43,7 @@
 // });
 
 
-/* 
+/*
 Kreirati program koji analizira JMBG koji je definisan kao string (kao u primerima '10. numbers' i '11. string').
   Znacajne delove JMBG-a izdvojiti putem funkcije substring.
   JMBG je broj formata 'DDMMGGGRRBBBK' i sastoji se od sledecih informacija:
@@ -60,22 +60,45 @@ Kreirati program koji analizira JMBG koji je definisan kao string (kao u primeri
   U zadatku ispisati datum rodjenja i pol osobe za zadani JMBG.
 */
 
-const showId = (id) => {
-    const dayB = id.slice(0, 2)
-    const montB = id.slice(2, 4);
-    const yearB = id.slice(4, 7);
-    let gender = id.slice(7, 10);
-    const control = id.slice(-1);
-    if (gender === 0 && gender < 500) {
-        gender = 'male'
-    } else {
-        gender = 'female'
-    }
-    const idDiv = document.createElement('p');
-    idDiv.textContent = `Day of birth ${dayB}, month  ${montB}, year  ${yearB}, gender ${gender}, control number is ${control}`;
-    idDiv.classList.add('oldMotor');
-    document.body.append(idDiv);
-}
+// const showId = (id) => {
+//     const dayB = id.slice(0, 2)
+//     const montB = id.slice(2, 4);
+//     const yearB = id.slice(4, 7);
+//     let gender = id.slice(7, 10);
+//     const control = id.slice(-1);
+//     if (gender === 0 && gender < 500) {
+//         gender = 'male'
+//     } else {
+//         gender = 'female'
+//     }
+//     const idDiv = document.createElement('p');
+//     idDiv.textContent = `Day of birth ${dayB}, month  ${montB}, year  ${yearB}, gender ${gender}, control number is ${control}`;
+//     idDiv.classList.add('oldMotor');
+//     document.body.append(idDiv);
+// }
 
-showId('23020215004');
-showId('0212987800043');
+// showId('23020215004');
+// showId('0212987800043');
+
+
+const users = [{
+        name: 'michel',
+        lastName: 'paint',
+        userName: 'admin'
+    },
+    {
+        name: 'ana',
+        lastName: 'nixon',
+        userName: 'nix'
+    },
+    {
+        name: 'sawn',
+        lastName: 'forest',
+        userName: 'gum'
+    },
+    {
+        name: 'ted',
+        lastName: 'readd',
+        userName: 'g'
+    }
+]
