@@ -84,6 +84,9 @@ let time = 70;
 
 
 // INTERVAL
+
+
+// set clock 
 const int = setInterval(() => {
     let min = Math.trunc(time / 60);
     let sec = time % 60;
@@ -102,4 +105,4 @@ const int = setInterval(() => {
     console.log(`Sec ${sec}`);
 }, 1000);
 
-// clearInterval(int);
+clearInterval(int);
