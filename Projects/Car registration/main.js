@@ -1,32 +1,8 @@
 'use strict';
 
-
-
-// const users = [{
-//         name: 'michel',
-//         lastName: 'paint',
-//         userName: 'admin'
-//     },
-//     {
-//         name: 'ana',
-//         lastName: 'nixon',
-//         userName: 'nix'
-//     },
-//     {
-//         name: 'sawn',
-//         lastName: 'forest',
-//         userName: 'gum'
-//     },
-//     {
-//         name: 'ted',
-//         lastName: 'readd',
-//         userName: 'g'
-//     }
-// ]
-
 const notes = [];
-
-const note = document.querySelector('.note');
+const title = document.querySelector('.title');
+const text = document.querySelector('.note');
 const addNotesBtn = document.querySelector('.add-note');
 const showNotes = document.querySelector('.show-notes');
 const search = document.querySelector('.search');
@@ -34,19 +10,27 @@ const searchNote = document.querySelector('.search-notes');
 const searchBtn = document.querySelector('.btn-search');
 
 addNotesBtn.addEventListener('click', function() {
-    notes.push(note.value);
-    note.value = '';
-
-
-    if (notes.length > 0) {
-        search.classList.remove('search');
+    const note = {
+        title: title.value,
+        text: text.value
     }
+    notes.push(note);
+    title.value = '';
+    text.value = '';
 
-    //  show notes
+
+    if (notes.length > 0) search.classList.remove('search');
+
     showNotes.innerHTML = '';
     notes.forEach((note, id) => {
-        const noteText = document.createElement('p');
-        noteText.textContent = `${id + 1}  ${note}`;
+        const noteText = document.createElement('div');
+        noteText.classList.add('test1');
+        noteText.innerHTML = `
+        <div class="test">
+          <p class="id">${id + 1}</p> 
+          <p class="title">${note.title}</p>
+          <p class="text">${note.text}</p>
+        </div>`;
         showNotes.append(noteText);
     });
 })
@@ -56,14 +40,16 @@ addNotesBtn.addEventListener('click', function() {
 
 
 searchBtn.addEventListener('click', function() {
-    //  search notes 
+
     const searchNotes = (notes, text) => {
-        return notes.filter(note => note < text);
+        return notes.filter(note => note.text.includes(text));
     }
+
     const searchArr = searchNotes(notes, searchNote.value);
     searchArr.map(note => {
         const test = document.createElement('p');
-        test.textContent = `You find ${note}`;
+        test.textContent = `You find ${note.text}`;
         search.append(test);
     });
+    searchNote.value = '';
 })

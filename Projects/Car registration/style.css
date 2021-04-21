@@ -1,3 +1,27 @@
  .search {
      display: none;
  }
+ 
+ .test {
+     margin: 10px;
+     padding: 5px;
+     display: flex;
+     align-items: center;
+ }
+ 
+ .id {
+     margin: 5px;
+ }
+ 
+ .title {
+     margin: 5px;
+ }
+ 
+ .text {
+     margin: 5px;
+ }
+ 
+ .removeNote {
+     color: red;
+     margin-left: 10px;
+ }
