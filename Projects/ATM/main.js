@@ -64,10 +64,13 @@ sortTransactions.addEventListener('click', () => {
 
 //  filtered
 filteredBtn.addEventListener('click', () => {
+    //  filter value
     const filterValue = Number(document.querySelector('.filter').value);
-    transactions.filter(money => money > filterValue).map(test => {
+
+    // create new  filtered arr 
+    transactions.filter(money => money > filterValue).map((test, id) => {
         const testDiv = document.createElement('p');
-        testDiv.textContent = `Greater value from ${filterValue} is ${test}`;
+        testDiv.textContent = `Greater value from ${filterValue} ${id + 1} is ${test}`;
         return accountTransactions.append(testDiv)
     });
 })
