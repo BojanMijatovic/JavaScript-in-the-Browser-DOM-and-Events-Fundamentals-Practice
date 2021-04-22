@@ -81,12 +81,13 @@ beerBtn.addEventListener('click', () => {
 //   show total 
 totalBtn.addEventListener('click', () => {
     totalList.textContent = `${calcTotal(orders)}$`;
+    showOrder(orders);
 })
 
 
 //  show sorted
 sortBtn.addEventListener('click', () => {
-    console.log(sortByPrice(orders));
+    sortByPrice(orders);
     showOrder(orders);
 })
 
@@ -94,5 +95,6 @@ sortBtn.addEventListener('click', () => {
 //  show filtered 
 filterBtn.addEventListener('click', () => {
     const filteredList = filterByPrice(orders, Number(filterInput.value));
+    totalList.textContent = `${calcTotal(filteredList)} $`;
     showOrder(filteredList)
 })
