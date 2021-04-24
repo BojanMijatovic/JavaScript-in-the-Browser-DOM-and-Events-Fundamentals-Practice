@@ -48,7 +48,7 @@ Person.prototype.job = false;
 
 //      TOP of prototype chain is Object.prototype
 // console.log(alex.__proto__.__proto__);
-console.log(alex.name);
+// console.log(alex.name);
 
 
 const arr = [1, 2, 3];
@@ -62,4 +62,34 @@ Array.prototype.startTest = function() {
 }
 
 
-console.log(arr.startTest());
+// console.log(arr.startTest());
+
+
+
+const Car = function(make, speed) {
+    this.make = make;
+    this.speed = speed;
+};
+
+Car.prototype.accelerate = function() {
+    this.speed += 10;
+}
+
+Car.prototype.break = function() {
+    this.speed -= 5;
+}
+
+
+const bmw = new Car('bmw', 100);
+
+console.log(bmw);
+bmw.accelerate();
+console.log(bmw);
+
+const mercedes = new Car('mercedes', 200);
+
+
+mercedes.__proto__.color = 'red';
+
+console.log(bmw.__proto__);
+console.log(Car.prototype);
