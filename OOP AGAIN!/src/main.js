@@ -53,19 +53,19 @@ Person.prototype.job = false;
 
 const arr = [1, 2, 3];
 
-console.log(arr.__proto__.__proto__ === Object.prototype);
-console.log(arr.__proto__ === Array.prototype);
-console.log(Array.__proto__.__proto__ === Object.prototype);
+// console.log(arr.__proto__.__proto__ === Object.prototype);
+// console.log(arr.__proto__ === Array.prototype);
+// console.log(Array.__proto__.__proto__ === Object.prototype);
 
 Array.prototype.startTest = function() {
     return ['test', '1', 2];
 }
 
-
 // console.log(arr.startTest());
 
 
 
+//  Example 1
 const Car = function(make, speed) {
     this.make = make;
     this.speed = speed;
@@ -78,18 +78,45 @@ Car.prototype.accelerate = function() {
 Car.prototype.break = function() {
     this.speed -= 5;
 }
-
-
 const bmw = new Car('bmw', 100);
 
-console.log(bmw);
+// console.log(bmw);
 bmw.accelerate();
-console.log(bmw);
+// console.log(bmw);
 
 const mercedes = new Car('mercedes', 200);
-
-
 mercedes.__proto__.color = 'red';
+// console.log(bmw.__proto__);
+// console.log(Car.prototype);
 
-console.log(bmw.__proto__);
-console.log(Car.prototype);
+
+//      ES6 Classes
+
+//  class expression  
+const newExpression = class {}
+
+//  class declaration
+class newDeclaration {}
+
+class newPerson {
+    constructor(name, lastName) {
+        this.name = name;
+        this.lastName = lastName
+    }
+    showSport() {
+        console.log(`${this.name} have sport ${this.sport}`);
+    }
+
+    // !      IMPORTANT 
+    //  1 Classes are NOT hoisted
+    //  ES6 Classes are functions!
+    //  classes are executed in strict mode always
+
+}
+
+const jordan = new newPerson('michel', 'jordan');
+console.log(jordan);
+
+newPerson.prototype.sport = 'basketball';
+
+jordan.showSport();
