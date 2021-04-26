@@ -340,29 +340,89 @@ initPerson.initTest('Mary', 'Poppins', 1987);
 // initPerson.calcAge();
 
 
+//  bank Account Example 
+
+
+// Encapsulation: Private Class Fields and Methods
+// 1) Public fields
+// 2) Private fields
+// 3) Public methods
+//  4) Private methods
+
+
 class bankAccount {
+
+    // 1)  Public fields
+    //  present ONLY on INSTANCES of class
+
+    locale = navigator.language;
+
+    //  2) Private fields
+    // #movements = []; for now ONLY SUPPORTED on goggle chrome
+    _movements = [];
+
     constructor(owner, amount, pin) {
         this.owner = owner;
         this.amount = amount;
-        this.pin = pin;
-        this.movements = [];
-        this.locale = navigator.language;
+
+        //  practice is to use underscore if property is need to bee protected
+        //  Protected value
+        // this._movements = [];
+        this._pin = pin;
+        // this.locale = navigator.language;
     }
 
+    // 3) PUBLIC METHODS
+    //  Methods are added to PROTOTYPE
     deposit(value) {
-        this.movements.push(value)
+        this._movements.push(value);
+        return this;
     }
 
     withdraw(value) {
-        this.movements.push(-value)
+        this._movements.push(-value);
+
+        //  this means to return hole object account1 then we can chaining the methods
+        //  example account.withdraw(100).deposit(5410).deposit(48);
+        return this;
+    }
+
+    approveLoan() {
+        return true;
+    }
+
+    getMovements() {
+        this._movements;
+        return this;
+    }
+
+    requestLoan(value) {
+        if (this.approveLoan()) {
+            this._movements.push(value);
+            console.log(`Loan approved`);
+            return this;
+        }
+    }
+
+    //  4) PRIVATE METHODS
+    // #privateMethod(){} ALSO WITH # 
+
+
+    //  static METHODS
+    // Available ONLY on CLASSES
+    static welcomeMessage() {
+        return console.log(`Here is bank :) `);
     }
 }
 
-
 const account1 = new bankAccount('alex', 1000, 4444);
-
-
 account1.deposit(34);
 account1.withdraw(20);
+account1.requestLoan(500);
+account1.welcomeMessage;
+
+bankAccount.welcomeMessage();
 
 console.log(account1);
+
+account1.deposit(450).deposit(485).deposit(87);
