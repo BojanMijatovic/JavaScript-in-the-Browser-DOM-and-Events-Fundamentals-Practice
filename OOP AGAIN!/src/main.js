@@ -66,25 +66,25 @@ Array.prototype.startTest = function() {
 
 
 //  Example 1
-const Car = function(make, speed) {
-    this.make = make;
-    this.speed = speed;
-};
+// const Car = function(make, speed) {
+//     this.make = make;
+//     this.speed = speed;
+// };
 
-Car.prototype.accelerate = function() {
-    this.speed += 10;
-}
+// Car.prototype.accelerate = function() {
+//     this.speed += 10;
+// }
 
-Car.prototype.break = function() {
-    this.speed -= 5;
-}
-const bmw = new Car('bmw', 100);
+// Car.prototype.break = function() {
+//     this.speed -= 5;
+// }
+// const bmw = new Car('bmw', 100);
 
 // console.log(bmw);
-bmw.accelerate();
+// bmw.accelerate();
 // console.log(bmw);
 
-const mercedes = new Car('mercedes', 200);
+// const mercedes = new Car('mercedes', 200);
 // mercedes.__proto__.color = 'red';
 // console.log(bmw.__proto__);
 // console.log(Car.prototype);
@@ -176,10 +176,102 @@ const newUserProto = {
 }
 
 const will = Object.create(newUserProto);
-console.log(will);
-console.log(newUserProto);
-console.log(will.__proto__.__proto__ === Object.prototype);
+// console.log(will);
+// console.log(newUserProto);
+// console.log(will.__proto__.__proto__ === Object.prototype);
 
 will.name = 'will';
 
-will.showName();
+// will.showName();
+
+const userProto = {
+    showName() {
+        return console.log(`Hey from new Object ${this.name}`);
+    }
+}
+
+const rex = Object.create(userProto);
+// console.log(rex);
+rex.name = 'rex';
+// rex.showName();
+// console.log(rex.__proto__ === userProto);
+
+
+//  Practice
+class Car {
+    constructor(name, speed) {
+        this.name = name;
+        this.speed = speed;
+    }
+    set speedUs(speed) {
+        return console.log(`In miles ${this.speed = speed /= 1.6} miles/h`);
+    }
+    get speedUs() {
+        console.log(`In km is ${this.speed *= 1.6} kh/h`);
+    }
+}
+
+const audi = new Car('audi', 120);
+// console.log(audi);
+// audi.speedUs = 100;
+// audi.speedUs;
+// console.log(audi);
+
+
+//  FROM PERSON CLASS
+
+Person.prototype.calcAge = function(years) {
+    return console.log(`${this.firstName} have ${2021 - years} years`);
+}
+
+
+const Student = function(firstName, lastName, course) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.course = course;
+}
+
+const mike = new Student('Mike', 'Green', 'cs');
+// console.log(mike);
+
+mike.__proto__.introduce = function() {
+    return console.log(`Hey I am ${this.firstName} ${this.lastName}`);
+}
+
+// mike.introduce();
+
+//  Inheritance Between "Classes": Constructor Functions
+Student.prototype = Object.create(Person.prototype);
+
+Student.prototype.courseName = function() {
+    return console.log(`${this.firstName} is on ${this.course}`);
+}
+
+const peter = new Student('Peter', 'Williams', 'Math');
+// peter.courseName();
+
+// peter.calcAge(1987);
+// console.log(peter.__proto__);
+
+
+
+const ev = function(model, speed, charge) {
+    Person.call(this, model, speed, charge);
+    this.charge = charge;
+}
+
+ev.prototype = Object.create(Person.prototype);
+
+const tesla = new ev('tesla', 100, 22);
+
+console.log(tesla);
+
+tesla.__proto__.accelerate = function() {
+    this.birthYear += 20;
+    this.charge--;
+    return console.log(`Current speed ${this.birthYear}  and battery now have ${this.charge}`);
+}
+
+
+tesla.accelerate();
+tesla.accelerate();
