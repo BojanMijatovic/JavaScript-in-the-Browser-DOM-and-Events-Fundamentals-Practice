@@ -42,7 +42,7 @@ const ted = new Person('Ted', 2000);
 // console.log(alex.__proto__);
 
 
-Person.prototype.job = false;
+// Person.prototype.job = false;
 // console.log(alex.__proto__);
 // console.log(alex);
 
@@ -85,7 +85,7 @@ bmw.accelerate();
 // console.log(bmw);
 
 const mercedes = new Car('mercedes', 200);
-mercedes.__proto__.color = 'red';
+// mercedes.__proto__.color = 'red';
 // console.log(bmw.__proto__);
 // console.log(Car.prototype);
 
@@ -115,8 +115,71 @@ class newPerson {
 }
 
 const jordan = new newPerson('michel', 'jordan');
-console.log(jordan);
+// console.log(jordan);
 
-newPerson.prototype.sport = 'basketball';
+// newPerson.prototype.sport = 'basketball';
 
-jordan.showSport();
+// jordan.showSport();
+
+
+/*
+Rent a car aplikacija je takodje dobra tema, vise razlicitih vozila, termini, kalendar i ostale stvari koje mozes da iskomplikujes dovoljno da bi mogao da provezbas. Web shop isto
+
+Najbolje gradjevinsko preduzeće, gde ces imati firmu, rirma će imati radike, mehanizaciju i materijal, projekte
+Što se nasledjivanja tiče možeš da imaš razne kategorije radnika, mašina, i projekata...
+*/
+
+
+// const user = {
+//     name: 'alex',
+//     movements: [123, 331, 131, 333, ],
+//     // getters
+//     get latest() {
+//         console.log(`${this.movements}`);
+//     },
+//     // setters
+//     set latest(move) {
+//         this.movements.push(move)
+//     }
+// }
+
+// user.latest = 74;
+// user.latest;
+
+
+class User {
+    constructor(name, lastName) {
+        this.name = name,
+            this.lastName = lastName
+    }
+
+    set name(newName) {
+        return this._name = newName
+    }
+
+    get name() {
+        return console.log(this._name);
+    }
+}
+
+const test = new User('ted', 'fee');
+// console.log(test);
+
+// test.name;
+
+
+
+const newUserProto = {
+    showName() {
+        return console.log(`Hi ${this.name}`);
+    }
+}
+
+const will = Object.create(newUserProto);
+console.log(will);
+console.log(newUserProto);
+console.log(will.__proto__.__proto__ === Object.prototype);
+
+will.name = 'will';
+
+will.showName();
