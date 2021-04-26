@@ -310,18 +310,6 @@ const nick = new Student('Nick', 'Cave', 1987, 'React');
 // console.log(nick.__proto__ === Student.prototype);
 
 
-
-/*
-Rent a car aplikacija je takodje dobra tema, vise razlicitih vozila, termini, 
-kalendar i ostale stvari koje mozes da iskomplikujes dovoljno da bi mogao da provezbas.
- Web shop isto
-
-Najbolje gradjevinsko preduzeće, gde ces imati firmu, rirma će imati radike, 
-mehanizaciju i materijal, projekte
-Što se nasledjivanja tiče možeš da imaš razne kategorije radnika, mašina, i projekata...
-*/
-
-
 const testPersonProto = {
     initTest(name, lastName, birthYear) {
         this.name = name;
