@@ -92,6 +92,11 @@ Array.prototype.startTest = function() {
 
 //      ES6 Classes
 
+// !      IMPORTANT 
+//  1 Classes are NOT hoisted
+//  ES6 Classes are functions!
+//  classes are executed in strict mode always
+
 //  class expression  
 const newExpression = class {}
 
@@ -107,10 +112,7 @@ class newPerson {
         console.log(`${this.name} have sport ${this.sport}`);
     }
 
-    // !      IMPORTANT 
-    //  1 Classes are NOT hoisted
-    //  ES6 Classes are functions!
-    //  classes are executed in strict mode always
+
 
 }
 
@@ -121,13 +123,6 @@ const jordan = new newPerson('michel', 'jordan');
 
 // jordan.showSport();
 
-
-/*
-Rent a car aplikacija je takodje dobra tema, vise razlicitih vozila, termini, kalendar i ostale stvari koje mozes da iskomplikujes dovoljno da bi mogao da provezbas. Web shop isto
-
-Najbolje gradjevinsko preduzeće, gde ces imati firmu, rirma će imati radike, mehanizaciju i materijal, projekte
-Što se nasledjivanja tiče možeš da imaš razne kategorije radnika, mašina, i projekata...
-*/
 
 
 // const user = {
@@ -147,22 +142,22 @@ Najbolje gradjevinsko preduzeće, gde ces imati firmu, rirma će imati radike, m
 // user.latest;
 
 
-class User {
-    constructor(name, lastName) {
-        this.name = name,
-            this.lastName = lastName
-    }
+// class User {
+//     constructor(name, lastName) {
+//         this.name = name,
+//             this.lastName = lastName
+//     }
 
-    set name(newName) {
-        return this._name = newName
-    }
+//     set name(newName) {
+//         return this._name = newName
+//     }
 
-    get name() {
-        return console.log(this._name);
-    }
-}
+//     get name() {
+//         return console.log(this._name);
+//     }
+// }
 
-const test = new User('ted', 'fee');
+// const test = new User('ted', 'fee');
 // console.log(test);
 
 // test.name;
@@ -219,42 +214,41 @@ const audi = new Car('audi', 120);
 
 
 //  FROM PERSON CLASS
-
 Person.prototype.calcAge = function(years) {
     return console.log(`${this.firstName} have ${2021 - years} years`);
 }
 
 
-const Student = function(firstName, lastName, course) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.course = course;
-}
+// const Student = function(firstName, lastName, course) {
+//     this.firstName = firstName;
+//     this.lastName = lastName;
+//     this.course = course;
+// }
 
-const mike = new Student('Mike', 'Green', 'cs');
+// const mike = new Student('Mike', 'Green', 'cs');
 // console.log(mike);
 
-mike.__proto__.introduce = function() {
-    return console.log(`Hey I am ${this.firstName} ${this.lastName}`);
-}
+// mike.__proto__.introduce = function() {
+//     return console.log(`Hey I am ${this.firstName} ${this.lastName}`);
+// }
 
 // mike.introduce();
 
 //  Inheritance Between "Classes": Constructor Functions
-Student.prototype = Object.create(Person.prototype);
+// Student.prototype = Object.create(Person.prototype);
 
-Student.prototype.courseName = function() {
-    return console.log(`${this.firstName} is on ${this.course}`);
-}
+// Student.prototype.courseName = function() {
+//     return console.log(`${this.firstName} is on ${this.course}`);
+// }
 
-const peter = new Student('Peter', 'Williams', 'Math');
+// const peter = new Student('Peter', 'Williams', 'Math');
 // peter.courseName();
 
 // peter.calcAge(1987);
 // console.log(peter.__proto__);
 
 
-
+//  Example 
 const ev = function(model, speed, charge) {
     Person.call(this, model, speed, charge);
     this.charge = charge;
@@ -264,7 +258,7 @@ ev.prototype = Object.create(Person.prototype);
 
 const tesla = new ev('tesla', 100, 22);
 
-console.log(tesla);
+// console.log(tesla);
 
 tesla.__proto__.accelerate = function() {
     this.birthYear += 20;
@@ -272,6 +266,103 @@ tesla.__proto__.accelerate = function() {
     return console.log(`Current speed ${this.birthYear}  and battery now have ${this.charge}`);
 }
 
+// tesla.accelerate();
+// tesla.accelerate();
 
-tesla.accelerate();
-tesla.accelerate();
+
+//  Inheritance Between  ES6 Classes
+class User {
+    constructor(name, lastName, birthYear) {
+            this.name = name;
+            this.lastName = lastName;
+            this.birthYear = birthYear;
+        }
+        // set name(newName) {
+        //     return this._name = newName
+        // }
+        // get name() {
+        //     return console.log(this._name);
+        // }
+    calcAge() {
+        return console.log(`Now I have ${2021 - this.birthYear} years`);
+    }
+}
+
+
+class Student extends User {
+    constructor(name, lastName, birthYear, course) {
+        //  always need to happen first
+        super(name, lastName, birthYear);
+        this.course = course;
+    }
+
+    introduce() {
+        return console.log(`Hi all I am ${this.name} ${this.lastName}`);
+    }
+}
+
+const nick = new Student('Nick', 'Cave', 1987, 'React');
+// console.log(nick);
+// nick.introduce();
+
+// nick.calcAge();
+
+// console.log(nick.__proto__ === Student.prototype);
+
+
+
+/*
+Rent a car aplikacija je takodje dobra tema, vise razlicitih vozila, termini, 
+kalendar i ostale stvari koje mozes da iskomplikujes dovoljno da bi mogao da provezbas.
+ Web shop isto
+
+Najbolje gradjevinsko preduzeće, gde ces imati firmu, rirma će imati radike, 
+mehanizaciju i materijal, projekte
+Što se nasledjivanja tiče možeš da imaš razne kategorije radnika, mašina, i projekata...
+*/
+
+
+const testPersonProto = {
+    initTest(name, lastName, birthYear) {
+        this.name = name;
+        this.lastName = lastName;
+        this.birthYear = birthYear;
+    },
+    calcAge() {
+        return console.log(`${2021 - this.birthYear}`);
+    }
+}
+
+const initPerson = Object.create(testPersonProto);
+initPerson.initTest('Mary', 'Poppins', 1987);
+
+// console.log(initPerson);
+// initPerson.calcAge();
+
+
+class bankAccount {
+    constructor(owner, amount, pin) {
+        this.owner = owner;
+        this.amount = amount;
+        this.pin = pin;
+        this.movements = [];
+        this.locale = navigator.language;
+    }
+
+    deposit(value) {
+        this.movements.push(value)
+    }
+
+    withdraw(value) {
+        this.movements.push(-value)
+    }
+}
+
+
+const account1 = new bankAccount('alex', 1000, 4444);
+
+
+account1.deposit(34);
+account1.withdraw(20);
+
+console.log(account1);
