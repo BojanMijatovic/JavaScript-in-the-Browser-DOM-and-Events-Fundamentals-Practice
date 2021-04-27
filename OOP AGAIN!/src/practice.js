@@ -45,6 +45,7 @@ class TeslaCar extends Car {
             this.battery++;
         }
     }
+
 }
 
 
@@ -94,23 +95,188 @@ class Shop {
         const itemForShop = this.items.findIndex(item => item.item === shopItem);
         if (itemForShop > -1) {
             const buyItems = this.items.splice(itemForShop, 1);
-            buyItems.map((item) => console.log(`You buy ${item.item} per price ${item.price}$ total is ${item.price}`));
+            buyItems.map((item) => console.log(`You buy ${item.item} per price ${item.price}$`));
         }
+    }
+
+
+    showTotal() {
+        return console.log(`Total in store is ${this.items.reduce((acc, current) => acc + current.price, 0)}$`);;
     }
 }
 
 const tobaccoShop = new Shop(7);
 
-tobaccoShop.addItem('beer', 14);
-tobaccoShop.addItem('cigarettes', 4);
-tobaccoShop.addItem('tobacco', 8);
-tobaccoShop.addItem('juice', 10);
+// tobaccoShop.addItem('beer', 14);
+// tobaccoShop.addItem('cigarettes', 4);
+// tobaccoShop.addItem('tobacco', 8);
+// tobaccoShop.addItem('juice', 10);
 // tobaccoShop.listItems();
 // tobaccoShop.filterItemsPerPrice(5);
 
-tobaccoShop.buyItem('beer');
-tobaccoShop.buyItem('beer');
-tobaccoShop.buyItem('juice');
+// tobaccoShop.buyItem('beer');
+// tobaccoShop.buyItem('beer');
+// tobaccoShop.buyItem('juice');
+// tobaccoShop.showTotal()
+
+// console.log(tobaccoShop);
 
 
-console.log(tobaccoShop);
+//  Bank Account
+class BankAccount {
+    _actions = [];
+    constructor(name, contract) {
+        this.name = name;
+        this.contract = contract;
+    }
+}
+
+
+class BankUser extends BankAccount {
+
+    constructor(name, contract, pin) {
+        super(name, contract)
+        this.pin = pin;
+    }
+
+    addDeposit(amount) {
+        this._actions.push(amount);
+        return this;
+    }
+
+    withdrawal(amount) {
+        this._actions.push(-amount);
+        return this;
+    }
+
+    showTransactions() {
+        return console.log(this._actions);
+    }
+
+    changePin(newPin) {
+        this._pin = newPin;
+        this._pin = this.pin;
+    }
+
+    showTotal() {
+        return this._actions.reduce((acc, current) => acc + current, 0);
+    }
+
+}
+
+const newUser = new BankUser('alex', 2021, 4444);
+
+newUser.addDeposit(100);
+newUser.addDeposit(45);
+newUser.withdrawal(450);
+
+// newUser.changePin(4546)
+
+// newUser.showTransactions();
+
+// console.log(newUser.showTotal());
+
+// console.log(newUser);
+
+
+
+class Hotel {
+    constructor(name, address, city) {
+        this.name = name;
+        this.address = address;
+        this.city = city;
+    }
+
+    printInfo() {
+        return console.log(`${this.name} is hotel  on address ${this.address}  in ${this.city}`);
+    }
+}
+
+
+class Apartment extends Hotel {
+    constructor(name, address, city, stars) {
+        super(name, address, city);
+        this.stars = stars;
+    }
+
+    welcomeMessage() {
+        return console.log(`We are ${this.name} from ${this.city} and we have ${this.stars} stars`);
+    }
+
+    printStars() {
+        return console.log(`${this.stars} stars we have`);
+    }
+}
+
+
+const sun = new Apartment('sun', 'address NN', 'Novi Sad', 4);
+sun.welcomeMessage();
+sun.printInfo();
+sun.printStars();
+
+
+/*
+Zadatak 6
+
+Kreirate objekat poruka koji od atributa ima naziv posiljaoca, naziv primaoca i sadrzaj poruke. Ima metodu stampaj koja na stranicu ispisuje pomenute atribute.
+
+Kreirati objekat SMSPoruka koji nasledjuje Poruku. Od dodatnih atributa ima broj telefona posiljaoca i primaoca. Redefinise metodu stampaj tako da ukljucuje pomenute atribute.
+
+Kreirate objekat Email poruka koji nasledjuje poruku. Od dodatnih atributa ima email adrese posiljaoca i primaoca i redefinise metodu stampaj tako da ukljucuje pomenute atribute. Pored toga ima jos jednu metodu koja se zove potpisPosiljaoca i koja ima jedan parametar koji ce biti ispisan kao potpid.
+*/
+
+class Message {
+    constructor(sender, reciver, messageBody) {
+        this.sender = sender;
+        this.reciver = reciver;
+        this.messageBody = messageBody;
+    }
+    printMessage() {
+        return console.log(`${this.sender} send message ${this.messageBody} to ${this.reciver} `);
+    }
+}
+
+
+class SMSMessage extends Message {
+    constructor(sender, reciver, messageBody, phoneNumSender, phoneNumReciver) {
+        super(sender, reciver, messageBody);
+        this.phoneNumSender = phoneNumSender;
+        this.phoneNumReciver = phoneNumReciver;
+    };
+
+    printMessage() {
+        return console.log(`${this.sender} from ${this.phoneNumSender} send message ${this.messageBody} to ${this.reciver} on ${this.phoneNumReciver}`);
+    }
+}
+
+const firstMessage = new SMSMessage('alex', 'ted', 'lorem', 634, 660);
+firstMessage.printMessage();
+
+
+class Email extends Message {
+    constructor(sender, reciver, messageBody, emailSender, emailReciver) {
+        super(sender, reciver, messageBody)
+        this.emailSender = emailSender;
+        this.emailReciver = emailReciver;
+    }
+
+    printEmail(signature) {
+        return console.log(`${this.sender} from ${this.emailSender} ${this.messageBody} to ${this.reciver} on ${this.emailReciver} sing ${this.singReciver(signature)}`);
+    }
+
+    singReciver(signature) {
+        return signature;
+    }
+}
+
+const email = new Email('rod', 'clarck', 'here is mail', '@gmail.comTest', '@fireFox.com');
+
+email.printEmail('myNewSing1415');
+
+
+/*
+Zadatak 7
+
+Prosiriti zadatak sa webshopom tako da se omoguci login dve vrste korisnika. Prva vrsta korisnika je MaloprodajniKorisnik a druga VeleprodajniKorisnik. VeloprodajniKorisnik i MaloprodajniKorisnik nasledjuju korisnika koji kao parametre ima ime i prezime.
+Kada korisnik doda odredjeni proizvod u korpu na stranici treba da mu se ispise ukupna cena tih proizvoda, uz to da veleprodajni korisnik ima popust od 15%.
+*/
