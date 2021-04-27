@@ -107,7 +107,7 @@ class Shop {
 
 const tobaccoShop = new Shop(7);
 
-// tobaccoShop.addItem('beer', 14);
+tobaccoShop.addItem('beer', 14);
 // tobaccoShop.addItem('cigarettes', 4);
 // tobaccoShop.addItem('tobacco', 8);
 // tobaccoShop.addItem('juice', 10);
@@ -210,20 +210,11 @@ class Apartment extends Hotel {
 
 
 const sun = new Apartment('sun', 'address NN', 'Novi Sad', 4);
-sun.welcomeMessage();
-sun.printInfo();
-sun.printStars();
+// sun.welcomeMessage();
+// sun.printInfo();
+// sun.printStars();
 
 
-/*
-Zadatak 6
-
-Kreirate objekat poruka koji od atributa ima naziv posiljaoca, naziv primaoca i sadrzaj poruke. Ima metodu stampaj koja na stranicu ispisuje pomenute atribute.
-
-Kreirati objekat SMSPoruka koji nasledjuje Poruku. Od dodatnih atributa ima broj telefona posiljaoca i primaoca. Redefinise metodu stampaj tako da ukljucuje pomenute atribute.
-
-Kreirate objekat Email poruka koji nasledjuje poruku. Od dodatnih atributa ima email adrese posiljaoca i primaoca i redefinise metodu stampaj tako da ukljucuje pomenute atribute. Pored toga ima jos jednu metodu koja se zove potpisPosiljaoca i koja ima jedan parametar koji ce biti ispisan kao potpid.
-*/
 
 class Message {
     constructor(sender, reciver, messageBody) {
@@ -250,7 +241,7 @@ class SMSMessage extends Message {
 }
 
 const firstMessage = new SMSMessage('alex', 'ted', 'lorem', 634, 660);
-firstMessage.printMessage();
+// firstMessage.printMessage();
 
 
 class Email extends Message {
@@ -271,12 +262,4 @@ class Email extends Message {
 
 const email = new Email('rod', 'clarck', 'here is mail', '@gmail.comTest', '@fireFox.com');
 
-email.printEmail('myNewSing1415');
-
-
-/*
-Zadatak 7
-
-Prosiriti zadatak sa webshopom tako da se omoguci login dve vrste korisnika. Prva vrsta korisnika je MaloprodajniKorisnik a druga VeleprodajniKorisnik. VeloprodajniKorisnik i MaloprodajniKorisnik nasledjuju korisnika koji kao parametre ima ime i prezime.
-Kada korisnik doda odredjeni proizvod u korpu na stranici treba da mu se ispise ukupna cena tih proizvoda, uz to da veleprodajni korisnik ima popust od 15%.
-*/
+// email.printEmail('myNewSing1415');
