@@ -147,7 +147,31 @@ const getCountry = (country) => {
 
 // http://localhost:3000/weather/{city}
 const findJokes = (city) => {
-    fetch(`https://www.breakingbadapi.com/api/characters?name=${city}`).then(response => response.json()).then(data => console.log(data));
+    fetch(`https://www.breakingbadapi.com/api/characters?name=${city}`).then(response => response.json()).then(data => {
+        const [objData] = data;
+        console.log(objData);
+    });
 }
 
-findJokes('walter');
+// findJokes('saul');
+
+
+
+
+//API for random Kanye West quotes
+const joke = () => {
+    fetch(`https://api.kanye.rest`).then(response => response.json()).then(data => console.log(data.quote))
+}
+
+// joke();
+
+//  artist
+
+
+//  basket   https://api.vatcomply.com/rates?base=USD  https://api.vatcomply.com/vat?vat_number=NL810462783B01
+const basket = () => {
+        fetch(`https://api.punkapi.com/v2/beers`).then(response => response.json()).then(data => {
+            console.log(data);
+        });
+    }
+    // basket()
