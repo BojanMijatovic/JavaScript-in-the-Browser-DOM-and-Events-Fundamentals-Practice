@@ -54,7 +54,6 @@ covid.addEventListener('load', () => {
 //  Call from function
 
 const testFunction = (country) => {
-    // Callback Hell
     const getCountryAndNeighbor = new XMLHttpRequest();
     getCountryAndNeighbor.open('GET', `https://restcountries.eu/rest/v2/name/${country}`);
     getCountryAndNeighbor.send();
@@ -64,10 +63,91 @@ const testFunction = (country) => {
         // console.log(this.responseText);
         //  convert to JSON
         const [data] = JSON.parse(this.responseText);
-        console.log(data);
+        // console.log(data);
         // const { name, nativeName, population } = data;
         // console.log(name, nativeName, population);
     })
 }
 
 testFunction('serbia')
+
+
+//  Callback Hell
+/* Is when one request call another request
+//          Example
+
+setTimeout(() => {
+    console.log(`1 sec`);
+    setTimeout(() => {
+        console.log(`2 sec`);
+    }, 1000);
+    setTimeout(() => {
+        console.log(`3 sec`);
+    }, 1000);
+    setTimeout(() => {
+        console.log(`4 sec`);
+    }, 1000);
+}, 1000);
+
+*/
+
+
+// Promises and the Fetch API
+//  Promise are object used as placeholder for future results of asynchronous operations
+const promiseFetch = fetch(`https://restcountries.eu/rest/v2/name/serbia`);
+// console.log(promiseFetch);
+
+// const getCountry = (country) => {
+//     fetch(`https://restcountries.eu/rest/v2/name/${country}`).then((response) => {
+//         // console.log(response);
+//         //  then we call json method witch is available on fetch method
+//         return response.json();
+
+//         //  IMPORTANT
+//         // then we must return and call another callback function 
+//     }).then((data) => {
+//         const [dataObj] = data;
+//         // console.log(dataObj.name, dataObj.region);
+//     })
+
+// };
+
+
+//  SHORT VERSION
+// const getCountry = (country) => {
+//     fetch(`https://restcountries.eu/rest/v2/name/${country}`).then(response => response.json()).then((data) => {
+//         const [dataObj] = data;
+//         console.log(dataObj);
+//         console.log(dataObj.name, dataObj.region);
+//     })
+// };
+
+
+//  CHAIN PROMISES
+const getCountry = (country) => {
+    fetch(`https://restcountries.eu/rest/v2/name/${country}`).then(response => response.json()).then(data => {
+        const [dataObj] = data;
+        // console.log(dataObj);
+        // console.log(dataObj.name, dataObj.region);
+        console.log(dataObj);
+
+
+        //  CHAIN HERE
+        // const neighbor = dataObj.borders[0];
+        const neighbor = 'bosnia';
+        console.log(neighbor);
+        //  FETCH SECOND COUNTRY NEIGHBOR
+        return fetch(`https://restcountries.eu/rest/v2/name/${neighbor}`).then(neighborResponse => neighborResponse.json()).then(dataNeighbor => {
+            return console.log(dataNeighbor);
+        })
+    })
+};
+
+// getCountry('serbia');
+
+// http://localhost:3000/weather/{city}
+const findJokes = (city) => {
+    fetch(`https://www.breakingbadapi.com/api/characters?name=${city}`).then(response => response.json()).then(data => console.log(data));
+}
+
+findJokes('walter');
